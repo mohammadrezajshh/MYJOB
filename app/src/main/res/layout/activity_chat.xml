@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChatActivity"
+    android:padding="15dp"
+    android:orientation="vertical"
+    android:background="@drawable/backgroundchat"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.8">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/line123"
+            android:orientation="vertical">
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>
+
+    <EditText
+        android:id="@+id/edtmsg"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"
+        android:layout_weight="0.1"
+        android:background="#aeaeae"
+        android:hint="send msg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:src="@drawable/ic_rechter_pfeil"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="15dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/edtmsg"
+        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true"
+        android:layout_weight=".1"
+        android:onClick="btnSend"
+        android:text="Send"
+        android:textAllCaps="false"
+        tools:ignore="OnClick"
+        android:layout_alignParentLeft="true" />
+
+
+
+
+</LinearLayout>

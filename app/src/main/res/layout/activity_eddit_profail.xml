@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context=".EdditProfail">
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:background="@drawable/ic_oval"
+        android:layout_marginTop="15dp"
+        android:padding="10dp"
+        android:src="@drawable/logo"
+        android:id="@+id/image_prof_eddit"
+        android:layout_alignParentLeft="true"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="10sp"
+        android:layout_marginTop="15dp"
+        android:text="Change Photo"
+        android:textColor="#1E88E5"
+        android:layout_below="@+id/image_prof_eddit"
+        android:gravity="center"
+        android:layout_marginLeft="15sp"
+        android:id="@+id/changephoto"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Trt name"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@+id/image_prof_eddit"
+        android:id="@+id/trt_name_eddit"
+        android:textSize="20sp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="18dp"/>
+
+    <EditText
+        android:id="@+id/trt_family_"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentRight="true"
+
+        android:layout_marginTop="18dp"
+        android:layout_below="@+id/trt_name_eddit"
+
+        android:layout_toRightOf="@+id/image_prof_eddit"
+        android:text="Trt Family"
+        android:textSize="20sp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TRT@gmail.com "
+        android:layout_below="@+id/trt_family_"
+
+        android:id="@+id/trt_email_eddit"
+        android:textSize="15sp"
+        android:layout_toRightOf="@+id/imageprof"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="18dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:layout_below="@+id/trt_email_eddit"
+        android:textColor="#1E88E5"
+        android:text="Change password"
+        android:textSize="10sp"
+        android:layout_alignParentRight="true"
+        android:id="@+id/changepass"
+        android:layout_marginRight="10dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Industry : "
+        android:padding="10dp"
+        android:id="@+id/eddit_text_prof"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/changepass"
+        android:ems="5"
+        android:layout_alignParentLeft="true"/>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:layout_toRightOf="@+id/eddit_text_prof"
+        android:text="Android DeV"
+        android:textSize="15sp"
+        android:padding="10dp"
+        android:ems="10"
+        android:id="@+id/skil_eddit"
+        android:layout_below="@+id/changepass"/>
+    <EditText
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:hint="Country"
+        android:layout_marginTop="10dp"
+        android:id="@+id/changeCountry"
+        android:layout_below="@+id/skil_eddit"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/changeCountry"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="166dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/buttonshapeblue"
+        android:text="Update"
+        android:textColor="#FFF" />
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/changeCountry"
+        android:layout_below="@id/skil_eddit"
+        android:layout_marginTop="15dp"
+        android:text="Student"
+        android:layout_marginLeft="15dp"
+        android:id="@+id/switchstudent"/>
+
+
+
+
+
+</RelativeLayout>

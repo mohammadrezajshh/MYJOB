@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/bn_Home"
+        android:title="Home"
+        android:icon="@drawable/ic_zuhause"/>
+    <item
+        android:id="@+id/bn_Search_job"
+        android:title="Search Job"
+        android:icon="@drawable/ic_job_search"/>
+
+    <item
+        android:id="@+id/bn_ADdpost"
+        android:title="Add post"
+        android:icon="@drawable/ic_add"/>
+
+    <item
+        android:id="@+id/bn_Jobs"
+        android:title="My Jobs"
+        android:icon="@drawable/ic_briefcase"/>
+    <item
+        android:id="@+id/bn_Profail"
+        android:title="Profile"
+        android:icon="@drawable/ic_nutzer"/>
+
+
+
+</menu>

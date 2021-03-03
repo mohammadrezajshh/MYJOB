@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".My_Jobs">
+    <include
+        layout="@layout/appbar"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:textSize="15sp"
+        android:id="@+id/yourproject"
+        android:text="Your Project"
+        android:layout_marginLeft="10dp"
+        android:layout_alignParentRight="true"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/yourproject"
+        android:padding="10dp"
+        android:id="@+id/recyclermyjob"/>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="36dp"
+        android:clickable="true"
+        android:elevation="10dp"
+        android:src="@drawable/ic_add"
+        app:rippleColor="@color/colorPrimary"
+        android:background="@color/colorPrimary"
+        android:focusable="true"
+
+        tools:ignore="ContentDescription"
+        android:layout_alignParentRight="true" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/bt_nav"
+        android:layout_alignParentBottom="true"
+        android:background="#FFF"
+        app:itemIconTint="@drawable/selector"
+        app:itemTextColor="@drawable/selector"
+        app:menu="@menu/menu"/>
+
+</RelativeLayout>

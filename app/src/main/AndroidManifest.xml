@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.karkardanand.project">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/logo"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <uses-library android:name="org.apache.http.legacy" android:required="false" />
+        <activity android:name=".Viewproject"></activity>
+        <activity android:name=".ListChat" />
+        <activity android:name=".Eddit_profile" />
+        <activity android:name=".CreatProject" />
+        <activity android:name=".Setnum" />
+        <activity android:name=".Add_codeEmail" />
+        <activity android:name=".EdditProfail" />
+        <activity android:name=".Add_Job" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".Home" />
+        <activity android:name=".My_Jobs" />
+        <activity android:name=".Notification" />
+        <activity android:name=".Search_jobs" />
+        <activity android:name=".Profile" />
+        <activity android:name=".Main_activity" />
+        <activity
+            android:name=".DashbordActivity"
+
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".ForgotPasswordActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".SignInActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".PictureActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".LocationAndPictureActivty"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".JoinNoewJobStudentActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".JoinNowJobActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".JoinNowNameActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".JoinNowEmailActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".ChatActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="15dp"
+    tools:context=".Add_Job">
+    <androidx.cardview.widget.CardView
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="15dp"
+        android:padding="10dp"
+
+        android:scrollbars="vertical"
+       app:cardElevation="12dp"
+        android:layoutDirection="ltr">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+
+            android:layout_gravity="center_vertical">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:hint="write caption info "
+            android:textSize="15sp"
+            android:textColorHint="#aeaeae"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+   <EditText
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:hint="Project money"
+       android:textColorHint="#aeaeae"
+       android:textSize="15sp"
+       android:layout_marginTop="15dp"/>
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:hint="Project time"
+                android:textColorHint="#aeaeae"
+                android:textSize="15sp"/>
+            </LinearLayout>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/buttonshapeblue"
+                android:text="send"
+                android:textColor="#FFFF"
+                android:textSize="15sp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="10dp"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+
+
+
+</LinearLayout>

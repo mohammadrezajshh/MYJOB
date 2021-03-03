@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Add_codeEmail"
+    android:orientation="vertical">
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:src="@drawable/logo"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Now check your email and send the activation code"
+        android:textSize="30dp"
+        android:textColor="#88020202"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/txtjob"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please send activation code "
+        android:textSize="17dp"
+        android:textColor="#C6020202"
+        android:layout_marginTop="20dp"
+        android:id="@+id/txtf"
+        android:layout_below="@+id/txtjob"
+        android:layout_marginLeft="10dp"/>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputTextPhoneReg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="50dp"
+        app:boxBackgroundColor="@android:color/transparent"
+        android:background="@android:color/transparent"
+        >
+
+        <EditText
+            android:id="@+id/edtpass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:hint="activation code"
+            android:ems="10"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@+id/imgceneter"
+        android:layout_marginHorizontal="20dp"
+        android:text="Send code"
+        android:textColor="#fff"
+        android:textSize="23dp"
+        android:textAllCaps="false"
+        android:background="@drawable/buttonshapeblue"
+        android:id="@+id/btnEmailJoin"
+        android:onClick="btnEmailJoin"
+        tools:ignore="OnClick"
+        android:layout_marginTop="50dp"/>
+
+</LinearLayout>
