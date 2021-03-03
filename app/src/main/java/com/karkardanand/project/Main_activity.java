@@ -58,7 +58,7 @@ public class Main_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_add_post );
-        Toast.makeText( this, "sdsdsds", Toast.LENGTH_SHORT ).show();
+        Toast.makeText( this, "jjjjj", Toast.LENGTH_SHORT ).show();
         Post= findViewById( R.id.post );
         Intent intent = getIntent();
         user_Id = intent.getStringExtra( "user_id" );
