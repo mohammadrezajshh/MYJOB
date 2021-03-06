@@ -13,7 +13,7 @@
         android:layout_height="?actionBarSize"
         android:layout_margin="1dp"
         android:padding="10dp"
-        android:background="@drawable/buttonformat"
+        android:background="@drawable/backgroundsearch"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         >
 
@@ -48,16 +48,15 @@
             android:id="@+id/eddittextserch"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:padding="10dp"
             android:layout_alignParentLeft="true"
             android:layout_centerInParent="true"
-            android:layout_marginRight="10dp"
+
             android:completionHint="Select a Skil"
             android:completionThreshold="1"
             android:layout_toLeftOf="@+id/chat"
-            android:background="@drawable/bordershape"
-            android:drawableEnd="@drawable/ic_loupe"
-            android:drawableRight="@drawable/ic_loupe"
+            android:background="@drawable/backsearch"
+            android:drawableEnd="@drawable/ic_search"
+            android:drawableRight="@drawable/ic_search"
             android:layout_marginLeft="30dp"
             android:hint="Search"
             android:shadowRadius="10" />
