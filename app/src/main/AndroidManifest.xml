@@ -25,7 +25,7 @@
         <activity android:name=".Add_codeEmail" />
         <activity android:name=".EdditProfail" />
         <activity android:name=".Add_Job" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".ChatActivity" />
         <activity android:name=".Home" />
         <activity android:name=".My_Jobs" />
         <activity android:name=".Notification" />
@@ -64,7 +64,7 @@
             android:name=".LoginActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".ChatActivity"
+            android:name=".MainActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

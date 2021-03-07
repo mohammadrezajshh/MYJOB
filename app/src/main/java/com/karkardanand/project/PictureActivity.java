@@ -71,7 +71,7 @@ public class PictureActivity extends AppCompatActivity {
     ImageView imgprofile;
     Button btnpicture, btnSkip;
     private ArrayList<String> listPermissionsNeeded;
-    private JSONObject json;
+    private JSONObject json,jsonn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +80,13 @@ public class PictureActivity extends AppCompatActivity {
         imgprofile = (ImageView) findViewById( R.id.imgprofile );
         btnpicture = (Button) findViewById( R.id.btnpicture );
         btnSkip = (Button) findViewById( R.id.btnSkip );
-        Intent intent = getIntent();
+        Intent intent=getIntent();
+        try {
+            json=new JSONObject(intent.getStringExtra("ret"));
+            jsonn=new JSONObject(intent.getStringExtra("infoData"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 //StringRequest stringRequest = new StringRequest( Request.Method.POST, "http://apk-trt.ir/app/signup.php?", new Response.Listener<String>() {
 //    @Override
 //    public void onResponse(String response) {
@@ -191,17 +197,21 @@ public class PictureActivity extends AppCompatActivity {
             @Override
             public void run() {
                 HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httpPost = new HttpPost( "" );
+                HttpPost httpPost = new HttpPost( "http://185.255.89.127:8081/jobapi/saveInfo/" );
 
                 Handler handler = new Handler( Looper.getMainLooper() );
 
                 try {
                     MultipartEntity entity = new MultipartEntity();
                     try {
-                        entity.addPart( "name", new StringBody( json.getString( "name" ).toString(), Charset.forName( "UTF8" ) ) );
-//                        entity.addPart("gmailAddress",new StringBody(account.getEmail(),Charset.forName("UTF8")));
-//                        entity.addPart("gmailId",new StringBody( account.getId(),Charset.forName("UTF8")));
-                        //                      entity.addPart("gmailName",new StringBody(account.getDisplayName(),Charset.forName("UTF8")));
+                        entity.addPart( "email", new StringBody( json.getString( "email" ).toString(), Charset.forName( "UTF8" ) ) );
+                        entity.addPart( "password", new StringBody( json.getString( "password" ).toString(), Charset.forName( "UTF8" ) ) );
+                        entity.addPart( "lastName", new StringBody( json.getString( "lastName" ).toString(), Charset.forName( "UTF8" ) ) );
+                        entity.addPart( "firstName", new StringBody( json.getString( "firstName" ).toString(), Charset.forName( "UTF8" ) ) );
+                        entity.addPart( "country", new StringBody( json.getString( "country" ).toString(), Charset.forName( "UTF8" ) ) );
+                        entity.addPart( "student", new StringBody( json.getString( "student" ).toString(), Charset.forName( "UTF8" ) ) );
+                        entity.addPart( "infoData", new StringBody( jsonn.toString(), Charset.forName( "UTF8" ) ) );
+
 
 //                    } catch (UnsupportedEncodingException e) {
 //                        handler.post(new Runnable() {
@@ -227,6 +237,16 @@ public class PictureActivity extends AppCompatActivity {
                     try {
 
                         final JSONObject jObject = new JSONObject( _response );
+                        String status = jObject.getString( "status" );
+                        switch (status){
+                            case "ok":
+                                String token = jObject.getString( "token" );
+                                Intent intent = new Intent(getApplicationContext(),Add_codeEmail.class).putExtra( "token",token );
+                                startActivity( intent );
+                                break;
+                            default:
+                                Toast.makeText( PictureActivity.this, "Please try again", Toast.LENGTH_SHORT ).show();
+                        }
 
 
                     } catch (JSONException e) {

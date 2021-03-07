@@ -45,15 +45,15 @@ public class Notification extends AppCompatActivity implements NotificationAdapt
 //            notif.add( new NotifMoudel( title, money, photo, id ) );
 
 
-        String url = "http://apk-trt.ir/client/api/v1/api.php?command=sendRegistrationToServer&token=" + "user_id" + "13" + "notification" + "&command";
-        final StringRequest stringRequest = new StringRequest( Request.Method.GET, url,
+
+        final StringRequest stringRequest = new StringRequest( Request.Method.POST, "http://185.255.89.127:8081/jobapi/nySkillProject/",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         final ArrayList<NotifMoudel> notif = new ArrayList<>();
                         try {
                             JSONObject jo = new JSONObject( response );
-                            JSONArray jsonArray = jo.getJSONArray( "project" );
+                            JSONArray jsonArray = jo.getJSONArray( "projectList" );
 
 
                             try {

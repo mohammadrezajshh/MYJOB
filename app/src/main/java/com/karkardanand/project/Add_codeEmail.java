@@ -30,7 +30,7 @@ public class Add_codeEmail extends AppCompatActivity {
     Button btnEmailJoin;
     private Intent intent;
     String passs;
-    String email= "";
+    String token= "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +40,9 @@ public class Add_codeEmail extends AppCompatActivity {
         pass = (EditText) findViewById( R.id.edtPass );
         btnEmailJoin = (Button) findViewById( R.id.btnEmailJoin );
         intent = getIntent();
-//        passs = pass.toString();
-        email=intent.getStringExtra( "email");
+        passs = pass.toString();
+        token=intent.getStringExtra( "token");
+        jsonparse();
     }
 
     public void btnEmailJoin(View view) throws JSONException {
@@ -60,7 +61,7 @@ public class Add_codeEmail extends AppCompatActivity {
     private void jsonparse() {
 
 
-        StringRequest stringRequest = new StringRequest( Request.Method.POST, "http://apk-trt.ir/client/api/v1/api.php?", new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest( Request.Method.POST, "http://185.255.89.127:8081/jobapi/saveInfo/", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
@@ -92,9 +93,8 @@ public class Add_codeEmail extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put( "email",email );
-                params.put( "verify_code",passs );
-                params.put( "command_emai","verify_email" );
+                params.put( "token",token );
+                params.put( "code",passs );
                 return params;
             }
         };

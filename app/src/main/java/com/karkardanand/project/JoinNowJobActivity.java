@@ -19,7 +19,7 @@ public class  JoinNowJobActivity extends AppCompatActivity {
     Switch swchstudent;
     Button btnjoinnow;
     String[] employmentTypeArray={"Full-time","Part-time","Self-employed","Freelance","Contract","Internship","Apprenticeship","Duales Studium","Verbeamtet","Freiwilliges Soziales Jahr","Werkstudium"};
-    private JSONObject json;
+    private JSONObject json,jsonn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +34,7 @@ public class  JoinNowJobActivity extends AppCompatActivity {
         swchstudent=(Switch)findViewById(R.id.swchstudent);
         Intent intent=getIntent();
         try {
+            jsonn = new JSONObject();
             json=new JSONObject(intent.getStringExtra("ret"));
         } catch (JSONException e) {
             e.printStackTrace();
@@ -60,17 +61,16 @@ public class  JoinNowJobActivity extends AppCompatActivity {
         }else {
             try {
                 json.put("student",false);
-                JSONObject jsonObjectinfo=new JSONObject();
-                jsonObjectinfo.put("job",edtrecentJob.getText().toString());
-                jsonObjectinfo.put("employmenttype",edtemploymenttype.getText().toString());
-                jsonObjectinfo.put("company",edtcompaney.getText().toString());
-                jsonObjectinfo.put("industry",edtindustry.getText().toString());
-                json.put("info",jsonObjectinfo);
+//                JSONObject jsonObjectinfo=new JSONObject();
+                jsonn.put("job",edtrecentJob.getText().toString());
+                jsonn.put("company",edtcompaney.getText().toString());
+                jsonn.put("skill",edtindustry.getText().toString());
+//                json.put("info",jsonObjectinfo);
 
             } catch (JSONException e) {
             e.printStackTrace();
         }
 
-            startActivitys.set(JoinNowJobActivity.this,btnjoinnow,new Intent(JoinNowJobActivity.this,LocationAndPictureActivty.class).putExtra("ret",json.toString()));}
+            startActivitys.set(JoinNowJobActivity.this,btnjoinnow,new Intent(JoinNowJobActivity.this,LocationAndPictureActivty.class).putExtra("ret",json.toString()).putExtra( "infoData",jsonn.toString() ));}
     }
 }

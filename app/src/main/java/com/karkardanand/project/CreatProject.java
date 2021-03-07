@@ -46,7 +46,7 @@ public class CreatProject extends AppCompatActivity {
     }
 
     private void jsonparse() {
-        StringRequest stringRequest = new StringRequest( Request.Method.POST, "",
+        StringRequest stringRequest = new StringRequest( Request.Method.POST, "http://185.255.89.127:8081/jobapi/saveProject/",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -71,13 +71,12 @@ public class CreatProject extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put( "command","creat_project" );
-                params.put( "user_id",user_id );
+                params.put( "token","token" );
                 params.put( "title",title_msg );
-                params.put( "info",info_msg );
+                params.put( "description",info_msg );
                 params.put( "money",money_msg );
                 params.put( "time",time_msg );
-                params.put( "skills",skils_msg );
+                params.put( "skill",skils_msg );
 
                 return params;
             }

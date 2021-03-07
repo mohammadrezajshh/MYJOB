@@ -35,7 +35,7 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
     EditText edtEmail,edtPass;
     private GoogleApiClient googleApiClient;
     private static final int RC_SIGN_IN = 1;
-    String email , pass, user_id;
+    String email , pass, token;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +72,7 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
     }
 
     private void jsonparse() {
-        StringRequest stringRequest = new StringRequest( Request.Method.POST, "http://apk-trt.ir/client/api/v1/api.php?", new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest( Request.Method.POST, "http://185.255.89.127:8081/jobapi/login/", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 JSONObject jsonsms = null;
@@ -81,16 +81,7 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
                     String status = jsonsms.getString( "status" );
                     switch (status){
                         case "ok":
-                            user_id = jsonsms.getString( "user_id" );
-                            if (jsonsms.getString( "act_state" ).equals( "1" )) {
-                                Intent intent = new Intent(getApplicationContext(),Main_activity.class).putExtra( "user_id",user_id );
-                                startActivity( intent );
-
-                            }else {
-                                Toast.makeText( SignInActivity.this, "Your email has not been activated", Toast.LENGTH_SHORT ).show();
-                                Intent intent = new Intent( getApplicationContext(), Add_codeEmail.class );
-                                startActivity( intent );
-                            }
+                            token = jsonsms.getString( "token" );
                             break;
                         default:
                             Alert.shows(SignInActivity.this,"","Please enter your email and password correctly","OK","");
@@ -110,7 +101,6 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("command","Login");
                 params.put( "email",email );
                 params.put( "password",pass );
                 return params;

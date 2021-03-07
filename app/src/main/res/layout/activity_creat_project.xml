@@ -46,11 +46,10 @@
             android:id="@+id/time"
             android:layout_width="100dp"
             android:layout_height="50dp"
-
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/money"
-            android:hint="money"
+            android:hint="duration"
             android:textColor="#000"
             android:textStyle="normal" />
 
@@ -61,7 +60,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/time"
-            android:hint="money"
+            android:hint="skill"
             android:textColor="#000"
             android:textStyle="normal" />
 
