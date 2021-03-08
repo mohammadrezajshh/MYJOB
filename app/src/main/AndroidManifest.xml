@@ -16,8 +16,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <uses-library android:name="org.apache.http.legacy" android:required="false" />
-        <activity android:name=".Viewproject"></activity>
+        <activity android:name=".Add_password"></activity>
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <activity android:name=".Viewproject" />
         <activity android:name=".ListChat" />
         <activity android:name=".Eddit_profile" />
         <activity android:name=".CreatProject" />
@@ -34,38 +39,37 @@
         <activity android:name=".Main_activity" />
         <activity
             android:name=".DashbordActivity"
-
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".ForgotPasswordActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".SignInActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".PictureActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".LocationAndPictureActivty"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".JoinNoewJobStudentActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".JoinNowJobActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".JoinNowNameActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".JoinNowEmailActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".MainActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

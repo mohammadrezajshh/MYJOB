@@ -14,7 +14,11 @@ import java.util.ArrayList;
 
 public class Profileadapter extends RecyclerView.Adapter<Profileadapter.ViewHolder> {
     private ProfileClickListener profaileListener;
-    ArrayList<HomeMoudel> arrayList;
+    ArrayList<ProfailMoudel> arrayList;
+
+    public Profileadapter(ArrayList<ProfailMoudel> prof) {
+        this.arrayList = prof;
+    }
 
 //    public Profileadapter(ArrayList<HomeMoudel> arrayListy) {
 //
@@ -31,17 +35,11 @@ public class Profileadapter extends RecyclerView.Adapter<Profileadapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull Profileadapter.ViewHolder holder, final int position) {
-        HomeMoudel homeMoudel = arrayList.get( position );
-        holder.caption.setText(homeMoudel.getCaption());
-//        holder..setText(notifMoudel.getSkills());
-//        holder.title.setText( notifMoudel.getTitle() );
-        holder.id.setText(homeMoudel.getPost_id());
-        holder.Like.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                profaileListener.onClick( position );
-            }
-        } );
+        ProfailMoudel profailMoudel = arrayList.get( position );
+//        holder.id.setText(ProfailMoudel.getId());
+//
+//        holder.photo.setImageResource(ProfailMoudel.getPhoto());
+
     }
 
     @Override
@@ -51,15 +49,14 @@ public class Profileadapter extends RecyclerView.Adapter<Profileadapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         CardView cardView;
-        TextView caption,id;
-        ImageView photo , Like;
+        ImageView photo ;
+        TextView id;
 
         public ViewHolder(@NonNull View itemView) {
             super( itemView );
-            cardView = itemView.findViewById( R.id.cardviewhome );
-            caption = itemView.findViewById( R.id.textcard_post );
-            Like = itemView.findViewById( R.id.Like_post );
+            cardView = itemView.findViewById( R.id.cardviewprof );
             photo = itemView.findViewById( R.id.photocard_post );
+            id = itemView.findViewById( R.id.idcardview );
         }
     }
     public interface ProfileClickListener{

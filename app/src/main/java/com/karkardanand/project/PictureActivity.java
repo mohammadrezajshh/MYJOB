@@ -11,6 +11,7 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -241,6 +242,8 @@ public class PictureActivity extends AppCompatActivity {
                         switch (status){
                             case "ok":
                                 String token = jObject.getString( "token" );
+                                SharedPreferences preferences = PictureActivity.this.getSharedPreferences("MY_APP",Context.MODE_PRIVATE);
+                                preferences.edit().putString("TOKEN",token).apply();
                                 Intent intent = new Intent(getApplicationContext(),Add_codeEmail.class).putExtra( "token",token );
                                 startActivity( intent );
                                 break;

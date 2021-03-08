@@ -2,7 +2,9 @@ package com.karkardanand.project;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -82,6 +84,11 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
                     switch (status){
                         case "ok":
                             token = jsonsms.getString( "token" );
+                            SharedPreferences preferences = SignInActivity.this.getSharedPreferences("MY_APP",Context.MODE_PRIVATE);
+                            preferences.edit().putString("TOKEN",token).apply();
+                            Intent intent = new Intent(getApplicationContext(),Main_activity.class);
+                            startActivity( intent );
+                            Toast.makeText( SignInActivity.this, "checktoken", Toast.LENGTH_SHORT ).show();
                             break;
                         default:
                             Alert.shows(SignInActivity.this,"","Please enter your email and password correctly","OK","");

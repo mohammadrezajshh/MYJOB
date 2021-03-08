@@ -29,7 +29,7 @@ public class Add_codeEmail extends AppCompatActivity {
     EditText pass, edtpassword;
     Button btnEmailJoin;
     private Intent intent;
-    String passs;
+    String passs ,passcod;
     String token= "";
 
     @Override
@@ -42,8 +42,52 @@ public class Add_codeEmail extends AppCompatActivity {
         intent = getIntent();
         passs = pass.toString();
         token=intent.getStringExtra( "token");
-        jsonparse();
+        jsonparsee();
+        if (passs == passcod){
+            jsonparse();
+        }else {
+            Alert.shows( getApplicationContext(),"Try Again","Please enter the opacity correctly ","OK","" );
+        }
+
     }
+
+    private void jsonparsee() { StringRequest stringRequest = new StringRequest( Request.Method.POST, "http://185.255.89.127:8081/jobapi/getPassword/", new Response.Listener<String>() {
+        @Override
+        public void onResponse(String response) {
+
+            try {
+
+                JSONObject json = new JSONObject( response );
+                String status = json.getString( "status" );
+                switch (status){
+                    case "ok":
+                        passcod = json.getString( "password" );
+                        Alert.shows( Add_codeEmail.this,"Successful","Your registration has been completed successfully","OK","" );
+                        break;
+                    default:
+                        Alert.shows( Add_codeEmail.this,"Wrong","Email is wrong","ok","" );
+
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }, new Response.ErrorListener() {
+        @Override
+        public void onErrorResponse(VolleyError error) {
+
+        }
+    } ) {
+        @Override
+        protected Map<String, String> getParams() throws AuthFailureError {
+            Map<String, String> params = new HashMap<String, String>();
+            params.put( "token",token );
+            return params;
+        }
+    };
+    }
+
 
     public void btnEmailJoin(View view) throws JSONException {
         Intent intent = new Intent(getApplicationContext(),Main_activity.class);
@@ -61,7 +105,7 @@ public class Add_codeEmail extends AppCompatActivity {
     private void jsonparse() {
 
 
-        StringRequest stringRequest = new StringRequest( Request.Method.POST, "http://185.255.89.127:8081/jobapi/saveInfo/", new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest( Request.Method.POST, "http://185.255.89.127:8081/jobapi/checkCode/", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 

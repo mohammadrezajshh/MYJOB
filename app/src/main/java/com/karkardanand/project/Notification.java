@@ -46,7 +46,7 @@ public class Notification extends AppCompatActivity implements NotificationAdapt
 
 
 
-        final StringRequest stringRequest = new StringRequest( Request.Method.POST, "http://185.255.89.127:8081/jobapi/nySkillProject/",
+        final StringRequest stringRequest = new StringRequest( Request.Method.POST, "http://185.255.89.127:8081/jobapi/mySkillProject/",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

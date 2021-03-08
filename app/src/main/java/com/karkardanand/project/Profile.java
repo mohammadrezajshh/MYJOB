@@ -20,21 +20,33 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 public class Profile extends AppCompatActivity {
     private Profileadapter profileadapter;
 String naemepeo , emailpro,skilspro;
+    private Profileadapter adapter;
+    TextView email , name , family;
+    TextView skils;
+    String namejson,emailjson,skiljson,familyjson;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bt_nav);
         bottomNavigationView.setSelectedItemId(R.id.bn_Profail);
-        TextView textView = findViewById( R.id.text_eddit );
-        TextView name = findViewById( R.id.trtname );
-        TextView email = findViewById( R.id.trtemail );
-        TextView skils = findViewById( R.id.skil_prof );
+        TextView edditprof = findViewById( R.id.text_eddit );
+         name = findViewById( R.id.trtname );
+         email = findViewById( R.id.trtemail );
+         skils = findViewById( R.id.skil_prof );
+         family = findViewById( R.id.trtfamily );
+         namejson = name.toString();
+         familyjson = family.toString();
+         emailjson = name.toString();
+         skiljson = name.toString();
+
         ImageView profile= findViewById( R.id.imageprof );
-        textView.setOnClickListener( new View.OnClickListener() {
+        edditprof.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),EdditProfail.class);
@@ -77,13 +89,37 @@ String naemepeo , emailpro,skilspro;
     }
 
     private void jsonparse() {
-        StringRequest stringRequest = new StringRequest( Request.Method.GET, "", new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest( Request.Method.POST, "http://185.255.89.127:8081/jobapi/getPrpfailAndPosts/", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 JSONObject jo = null;
+                final ArrayList<ProfailMoudel> prof = new ArrayList<>();
                 try {
                     jo = new JSONObject( response );
-                    JSONArray jsonArray = jo.getJSONArray( "posts" );
+                    JSONObject jsonObject = new JSONObject();
+                    JSONObject json = new JSONObject();
+                    jsonObject = jo.getJSONObject( "profailDict" );
+                    json = jsonObject.getJSONObject( "infoData" );
+                    JSONArray jsonArray = jo.getJSONArray( "postList" );
+                    String status = jo.getString( "status" );
+                    switch (status){
+                        case "ok":
+                            namejson =jsonObject.getString("firstname");
+                            emailjson =jsonObject.getString("email");
+                            skiljson =json.getString("skill");
+                            familyjson =jsonObject.getString("lastName");
+                            try {
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    JSONObject jsonObjectt = jsonArray.getJSONObject( i );
+                                    prof.add( new ProfailMoudel(
+                                           jsonObjectt.getString( "id" ),jsonObjectt.getString( "photo" )));
+                                }
+                                adapter = new Profileadapter( prof );
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+
+                    }
 
                 } catch (JSONException e) {
                     e.printStackTrace();

@@ -78,19 +78,21 @@
             />
 
     </com.google.android.material.textfield.TextInputLayout>
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="FORGOT PASSWORD?"
-        android:layout_marginTop="25dp"
-        android:layout_marginHorizontal="10dp"
-        android:textSize="18dp"
-        android:textColor="#024665"
-        android:theme="@style/PrimaryFlatButton"
-        android:onClick="btnForget"
-        android:id="@+id/btnForget"
-        tools:ignore="OnClick" />
-    <androidx.appcompat.widget.AppCompatButton
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnForget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="25dp"
+            android:onClick="btnForget"
+            android:text="FORGOT PASSWORD?"
+            android:textColor="#024665"
+            android:textSize="18dp"
+            android:theme="@style/PrimaryFlatButton"
+            tools:ignore="OnClick" />
+
+        <androidx.appcompat.widget.AppCompatButton
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_below="@+id/imgceneter"
