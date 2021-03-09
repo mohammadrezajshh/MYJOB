@@ -27,5 +27,6 @@ public class EdditProfail extends AppCompatActivity {
                 startActivity( intent );
             }
         } );
+
     }
 }

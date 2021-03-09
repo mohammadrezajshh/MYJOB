@@ -10,6 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+
 import java.util.ArrayList;
 
 public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.ViewHolder>{
@@ -33,12 +36,15 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         holder.money.setText(notifMoudel.getMoney());
         holder.skils.setText(notifMoudel.getSkills());
         holder.title.setText( notifMoudel.getTitle() );
+        holder.id.setText( notifMoudel.getId() );
         //todo use glide for show image on imageView
        // holder.photo.
+        Glide.with(Notification.this).load().apply(options).into(photo);
+        Glide.with(  )
         holder.cardView.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                notifiClickListener.onClick( position );
+
             }
         } );
     }
@@ -50,7 +56,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         CardView cardView;
-        TextView title;
+        TextView title,id;
         TextView skils;
         TextView money;
         ImageView photo;
@@ -61,6 +67,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             title= itemView.findViewById( R.id.textcard );
             skils= itemView.findViewById( R.id.skillscard );
             money= itemView.findViewById( R.id.money_card );
+            id= itemView.findViewById( R.id.id_notif );
             photo= itemView.findViewById( R.id.photocard );
         }
     }

@@ -60,6 +60,7 @@
         android:textColor="#C6020202"
         android:layout_marginTop="20dp"
         android:id="@+id/txttf"
+        android:visibility="gone"
         android:layout_below="@+id/txtjob"
         android:layout_marginLeft="10dp"/>
     <com.google.android.material.textfield.TextInputLayout
@@ -68,6 +69,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
         android:layout_marginTop="20dp"
+        android:visibility="gone"
         app:boxBackgroundColor="@android:color/transparent"
         android:background="@android:color/transparent"
         >
@@ -87,6 +89,7 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="10dp"
     android:layout_marginTop="20dp"
+    android:visibility="gone"
     app:boxBackgroundColor="@android:color/transparent"
     android:background="@android:color/transparent"
     >

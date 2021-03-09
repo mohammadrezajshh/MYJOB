@@ -7,14 +7,19 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Viewproject extends AppCompatActivity {
 TextView title;
@@ -29,7 +34,6 @@ RecyclerView recyclerView;
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_viewproject );
         title = findViewById( R.id.title_view );
-
         info = findViewById( R.id.info_view );
         money = findViewById(R.id.money_view);
         skils = findViewById(R.id.skils_view);
@@ -42,22 +46,23 @@ RecyclerView recyclerView;
         jsonparsee();
     }
 //todo list of request
-    private void jsonparsee() {
-        String url ="http://apk-trt.ir/client/api/v1/api.php?command=sendRegistrationToServer&token=" + "user_id" + "13" + "view_project" + "&command";
-        StringRequest stringRequest = new StringRequest( Request.Method.GET, url, new Response.Listener<String>() {
+    private void jsonparse() {
+    ;
+        StringRequest stringRequest = new StringRequest( Request.Method.POST, "http://185.255.89.127:8081/jobapi/projectDeatails/", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 JSONObject jo = null;
                 try {
                     jo = new JSONObject( response );
                     String status= jo.getString( "status" );
+                    JSONObject jsonObject = jo.getJSONObject( "projectDeatail" );
                     switch(status) {
                         case "OK":
-                            titlee = jo.getString( "title" );
-                            infoo = jo.getString( "info" );
-                            moneyy = jo.getString( "money" );
-                            skilss = jo.getString( "skills" );
-                            id = jo.getString( "id" );
+                            titlee = jsonObject.getString( "title" );
+                            infoo = jsonObject.getString( "description" );
+                            moneyy = jsonObject.getString( "money" );
+                            skilss = jsonObject.getString( "skill" );
+                            id = jsonObject.getString( "id" );
                             break;
                         default:
                             Toast.makeText( Viewproject.this, "Erorr", Toast.LENGTH_SHORT ).show();
@@ -74,13 +79,20 @@ RecyclerView recyclerView;
             public void onErrorResponse(VolleyError error) {
 
             }
-        } );
+        } ){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put( "projectId","projectid" );
+                return params;
+            }
+        };
     }
 
+//todo request of recycler
+    private void jsonparsee() {
 
-    private void jsonparse() {
-        String url ="http://apk-trt.ir/client/api/v1/api.php?command=sendRegistrationToServer&token=" + "user_id" + "13" + "view_project" + "&command";
-        StringRequest stringRequest = new StringRequest( Request.Method.GET, url, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest( Request.Method.POST, "url", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 JSONObject jo = null;
@@ -113,6 +125,13 @@ RecyclerView recyclerView;
             public void onErrorResponse(VolleyError error) {
 
             }
-        } );
+        } ){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+//                params.put( "projectId","projectid" );
+                return params;
+            }
+        };
     }
 }
