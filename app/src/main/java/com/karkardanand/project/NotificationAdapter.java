@@ -39,8 +39,8 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         holder.id.setText( notifMoudel.getId() );
         //todo use glide for show image on imageView
        // holder.photo.
-        Glide.with(Notification.this).load().apply(options).into(photo);
-        Glide.with(  )
+//        Glide.with(Notification.this).load().apply(options).into(photo);
+//        Glide.with(  )
         holder.cardView.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -35,7 +35,7 @@ public class Listechatadapter extends RecyclerView.Adapter<Listechatadapter.View
         holder.caption.setText(homeMoudel.getCaption());
 //        holder..setText(notifMoudel.getSkills());
 //        holder.title.setText( notifMoudel.getTitle() );
-        holder.id.setText(homeMoudel.getPost_id());
+        holder.id.setText(homeMoudel.getid());
         holder.Like.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {

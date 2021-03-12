@@ -3,14 +3,31 @@ package com.karkardanand.project;
 public class HomeMoudel {
 
     private String caption;
-    private String post_id;
-    private int photo;
+    private String id;
+    private String photo;
+    private String profilePic;
 
-    public int getPhoto() {
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getProfilePic() {
+        return profilePic;
+    }
+
+    public void setProfilePic(String profilePic) {
+        this.profilePic = profilePic;
+    }
+
+    public String getPhoto() {
         return photo;
     }
 
-    public void setPhoto(int photo) {
+    public void setPhoto(String photo) {
         this.photo = photo;
     }
 
@@ -18,22 +35,23 @@ public class HomeMoudel {
         return caption;
     }
 
-    public HomeMoudel(String caption, String post_id, int photo) {
+    public HomeMoudel(String caption, String id, String profilePic, String photo) {
         this.caption = caption;
-        this.post_id = post_id;
+        this.id = id;
         this.photo = photo;
+        this.profilePic = profilePic;
     }
 
     public void setCaption(String caption) {
         this.caption = caption;
     }
 
-    public String getPost_id() {
-        return post_id;
+    public String getid() {
+        return id;
     }
 
-    public void setPost_id(String post_id) {
-        this.post_id = post_id;
+    public void setid(String id) {
+        this.id = id;
     }
 
     public String getcaption() {
@@ -47,22 +65,23 @@ public class HomeMoudel {
 
 
 
-    public HomeMoudel(String string, String money, String post_id, String caption, int photo) {
-        this.post_id = post_id;
+    public HomeMoudel(String string, String profilePic, String id, String caption, String photo) {
+        this.id = id;
 
         this.caption = caption;
 
         this.photo = photo;
+        this.profilePic = profilePic;
     }
-
 
 
     @Override
     public String toString() {
-        return "{" +
-                "post_id:'" + post_id + '\'' +
-                ", caption:'" +  caption + '\'' +
-                ", photo:'" +  photo + '\'' +
+        return "postsList{" +
+                "caption='" + caption + '\'' +
+                ", id='" + id + '\'' +
+                ", photo='" + photo + '\'' +
+                ", profilePic='" + profilePic + '\'' +
                 '}';
     }
 }

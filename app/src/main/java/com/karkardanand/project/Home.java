@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toolbar;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -22,6 +23,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class Home extends AppCompatActivity {
     private HomeAdapter adapter;
@@ -76,23 +78,23 @@ public class Home extends AppCompatActivity {
 //            notif.add( new NotifMoudel( title, money, photo, id ) );
 
 
-        String url = "http://apk-trt.ir/client/api/v1/api.php?command=sendRegistrationToServer&token=" + "user_id" + "13" + "Home" + "&command";
-        final StringRequest stringRequest = new StringRequest( Request.Method.GET, url,
+
+        final StringRequest stringRequest = new StringRequest( Request.Method.POST, "http://185.255.89.127:8081/jobapi/home/",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         final ArrayList<HomeMoudel> homee = new ArrayList<>();
                         try {
                             JSONObject jo = new JSONObject( response );
-                            JSONArray jsonArray = jo.getJSONArray( "posts" );
+                            JSONArray jsonArray = jo.getJSONArray( "postsList" );
 
 
                             try {
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     JSONObject jsonObject = jsonArray.getJSONObject( i );
                                     homee.add( new HomeMoudel(
-                                            jsonObject.getString( "caption" ), jsonObject.getString( "post_id" ),
-                                            jsonObject.getInt( "photo" ) ) );
+                                            jsonObject.getString( "caption" ), jsonObject.getString( "id" ),
+                                            jsonObject.getString( "profilePic" ),jsonObject.getString( "photo" ) ) );
                                 }
                                 adapter = new HomeAdapter( homee );
                                 adapter.setHomeClickListener( (HomeAdapter.HomeClickListener) Home.this );
@@ -108,7 +110,13 @@ public class Home extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
 
             }
-        } );
+        } )
+        {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                return super.getParams();
+            }
+        };
         RequestQueue requestQueue= Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
 

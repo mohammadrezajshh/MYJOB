@@ -84,8 +84,12 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
                     switch (status){
                         case "ok":
                             token = jsonsms.getString( "token" );
-                            SharedPreferences preferences = SignInActivity.this.getSharedPreferences("MY_APP",Context.MODE_PRIVATE);
-                            preferences.edit().putString("TOKEN",token).apply();
+                            SharedPreferences shared = getSharedPreferences("MY_APP", MODE_PRIVATE);
+                            SharedPreferences.Editor editor = shared.edit();
+                            editor.putString("Token", token);
+                            editor.commit();
+//                            SharedPreferences preferences = SignInActivity.this.getSharedPreferences("MY_APP",Context.MODE_PRIVATE);
+//                            preferences.edit().putString("TOKEN",token).apply();
                             Intent intent = new Intent(getApplicationContext(),Main_activity.class);
                             startActivity( intent );
                             Toast.makeText( SignInActivity.this, "checktoken", Toast.LENGTH_SHORT ).show();

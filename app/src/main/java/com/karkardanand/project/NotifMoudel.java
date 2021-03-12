@@ -2,7 +2,12 @@ package com.karkardanand.project;
 
 import android.widget.ImageView;
 
-public class NotifMoudel {
+import java.util.ArrayList;
+import java.util.List;
+
+public class NotifMoudel{
+
+
     private String id;
     private String title;
     private String money;
@@ -31,6 +36,8 @@ public class NotifMoudel {
     public String getTitle() {
         return title;
     }
+
+
 
     public void setTitle(String title) {
         this.title = title;
