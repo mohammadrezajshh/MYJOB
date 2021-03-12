@@ -1,22 +1,46 @@
 package com.karkardanand.project;
 
 public class SearchMoudel {
-    private String id;
-    private String title;
-    private String money;
-    private String skills;
-    private int photo;
+        private String id;
+        private String title;
+        private String description;
+        private String money;
+        private String duration;
+        private String photo;
 
-    public int getPhoto() {
-        return photo;
-    }
+    public SearchMoudel(String id, String money, String title, String photo) {
 
-    public void setPhoto(int photo) {
-        this.photo = photo;
     }
 
 
+    public String getID() { return id; }
 
+        public void setID(String value) { this.id = value; }
+
+
+        public String getTitle() { return title; }
+
+        public void setTitle(String value) { this.title = value; }
+
+
+        public String getDescription() { return description; }
+
+        public void setDescription(String value) { this.description = value; }
+
+
+        public String getMoney() { return money; }
+
+        public void setMoney(String value) { this.money = value; }
+
+
+        public String getDuration() { return duration; }
+
+        public void setDuration(String value) { this.duration = value; }
+
+
+        public String getPhoto() { return photo; }
+
+        public void setPhoto(String value) { this.photo = value; }
 
     public String getId() {
         return id;
@@ -26,50 +50,16 @@ public class SearchMoudel {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getMoney() {
-        return money;
-    }
-
-    public void setMoney(String money) {
-        this.money = money;
-    }
-
-    public String getSkills() {
-        return skills;
-    }
-
-    public void setSkills(String skills) {
-        this.skills = skills;
-    }
-
-
-
-    public SearchMoudel(String id, String money, String title, String skills, int photo) {
-        this.id = id;
-        this.money = money;
-        this.title = title;
-        this.skills = skills;
-        this.photo = photo;
-    }
-
-
-
     @Override
     public String toString() {
-        return "{" +
-                "id:'" + id + '\'' +
-                ", title:'" +  title + '\'' +
-                ", money:'" +  money + '\'' +
-                ", skills:'" +  skills + '\'' +
-                ", photo:'" +  photo + '\'' +
+        return "projectList{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", money='" + money + '\'' +
+                ", duration='" + duration + '\'' +
+                ", photo='" + photo + '\'' +
                 '}';
     }
 }
+

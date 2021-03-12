@@ -3,7 +3,31 @@ package com.karkardanand.project;
 import android.content.Intent;
 
 public class ProfailMoudel {
+
+    private String profilePic;
     private String id;
+    private String caption;
+    private String photo;
+
+
+    public String getProfilePic() { return profilePic; }
+
+    public void setProfilePic(String value) { this.profilePic = value; }
+
+
+    public String getID() { return id; }
+
+    public void setID(String value) { this.id = value; }
+
+
+    public String getCaption() { return caption; }
+
+    public void setCaption(String value) { this.caption = value; }
+
+
+    public String getPhoto() { return photo; }
+
+    public void setPhoto(String value) { this.photo = value; }
 
     public String getId() {
         return id;
@@ -13,39 +37,13 @@ public class ProfailMoudel {
         this.id = id;
     }
 
-    private String photo;
-
-    public String getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(String photo) {
-        this.photo = photo;
-    }
-
-
-
-
-    public ProfailMoudel(String photo, String id) {
-        this.photo = photo;
-        this.id= id;
-
-    }
-    public String id() {
-        return id;
-    }
-    public String photo() {
-        return photo;
-    }
-
-
     @Override
     public String toString() {
         return "ProfailMoudel{" +
-                "id='" + id + '\'' +
-                ", photo=" + photo +
+                "profilePic='" + profilePic + '\'' +
+                ", id='" + id + '\'' +
+                ", caption='" + caption + '\'' +
+                ", photo='" + photo + '\'' +
                 '}';
     }
-
-
 }

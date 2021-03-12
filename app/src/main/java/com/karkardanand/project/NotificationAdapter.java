@@ -1,5 +1,6 @@
 package com.karkardanand.project;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,11 +19,14 @@ import java.util.ArrayList;
 public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.ViewHolder>{
     ArrayList<NotifMoudel> arrayList;
     ArrayList<String> json=new ArrayList<String>();
+    private Context context;
     private NotifiClickListener notifiClickListener;
-    public NotificationAdapter(ArrayList<NotifMoudel> arrayListy) {
-       ;
-        this.arrayList= arrayListy;
+    public NotificationAdapter(Context context,ArrayList<NotifMoudel> notif) {
+       this.context=context;
+        this.arrayList= notif;
     }
+
+
     @NonNull
     @Override
     public NotificationAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -37,6 +41,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         holder.skils.setText(notifMoudel.getSkills());
         holder.title.setText( notifMoudel.getTitle() );
         holder.id.setText( notifMoudel.getId() );
+        Glide.with(context).load(notifMoudel.getPhoto()).into(holder.photo);
         //todo use glide for show image on imageView
        // holder.photo.
 //        Glide.with(Notification.this).load().apply(options).into(photo);

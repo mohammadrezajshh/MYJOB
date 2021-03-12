@@ -1,6 +1,7 @@
 package com.karkardanand.project;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
@@ -20,6 +21,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Notification extends AppCompatActivity implements NotificationAdapter.NotifiClickListener {
@@ -40,6 +42,8 @@ public class Notification extends AppCompatActivity implements NotificationAdapt
         jsonparse();
 
     }
+    SharedPreferences shared = getSharedPreferences("MY_APP", MODE_PRIVATE);
+    String token = (shared.getString("token", ""));
 
     private void jsonparse() {
 
@@ -82,7 +86,8 @@ public class Notification extends AppCompatActivity implements NotificationAdapt
         } ){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                return super.getParams();
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("token", token);
             }
         };
         RequestQueue requestQueue= Volley.newRequestQueue(this);

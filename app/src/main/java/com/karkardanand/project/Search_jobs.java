@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -26,6 +27,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Search_jobs extends AppCompatActivity {
     AutoCompleteTextView search;
@@ -43,6 +46,7 @@ public class Search_jobs extends AppCompatActivity {
         chat = findViewById( R.id.chat );
 
          search = findViewById( R.id.eddittextserch );
+        AutoCompelet.setit(Search_jobs.this,search,getJobList.setindustry());
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bt_nav);
         bottomNavigationView.setSelectedItemId(R.id.bn_Search_job);
@@ -99,8 +103,7 @@ public class Search_jobs extends AppCompatActivity {
 
     private void jsonparse() {
 
-        String url = "http://apk-trt.ir/client/api/v1/api.php?command=sendRegistrationToServer&token=" + "user_id" + "13" + "Search" + "&command" + searcher +"search_txt" ;
-        final StringRequest stringRequest = new StringRequest( Request.Method.GET, url,
+        final StringRequest stringRequest = new StringRequest( Request.Method.POST, "http://185.255.89.127:8081/jobapi/searchJob/",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -114,8 +117,8 @@ public class Search_jobs extends AppCompatActivity {
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     JSONObject jsonObject = jsonArray.getJSONObject( i );
                                     seasrchh.add( new SearchMoudel( jsonObject.getString( "id" ), jsonObject.getString( "Money" ),
-                                            jsonObject.getString( "title" ), jsonObject.getString( "skills" ),
-                                            jsonObject.getInt( "photo" ) ) );
+                                            jsonObject.getString( "title" ),
+                                            jsonObject.getString( "photo" ) ) );
                                 }
                                 adapter = new SearcheAdapter( seasrchh );
                                 adapter.setSearchListener( (SearcheAdapter.SearchListener) Search_jobs.this );
@@ -131,7 +134,16 @@ public class Search_jobs extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
 
             }
-        } );
+        } ) {
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("skill", searcher);
+
+                return params;
+            }
+        };
         RequestQueue requestQueue= Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
 

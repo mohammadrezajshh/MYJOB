@@ -77,14 +77,14 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Industry : "
+        android:text="Skill : "
         android:padding="10dp"
         android:id="@+id/eddit_text_prof"
         android:layout_marginLeft="10dp"
         android:layout_below="@+id/changepass"
         android:ems="5"
         android:layout_alignParentLeft="true"/>
-    <EditText
+    <AutoCompleteTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="1dp"
@@ -95,7 +95,15 @@
         android:ems="10"
         android:id="@+id/skil_eddit"
         android:layout_below="@+id/changepass"/>
-    <EditText
+    <AutoCompleteTextView
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:hint="Job"
+        android:layout_marginTop="10dp"
+        android:id="@+id/changejob"
+        android:layout_below="@+id/changepass"
+        android:layout_toRightOf="@+id/skil_eddit"/>
+    <AutoCompleteTextView
         android:layout_width="100dp"
         android:layout_height="40dp"
         android:hint="Country"

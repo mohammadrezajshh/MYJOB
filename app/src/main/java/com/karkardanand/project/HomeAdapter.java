@@ -1,5 +1,6 @@
 package com.karkardanand.project;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -19,6 +20,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.bumptech.glide.Glide;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,15 +32,18 @@ import java.util.Map;
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     private HomeClickListener homeListener;
     private boolean waitDouble = true;
+    private Context context;
     private static final int DOUBLE_CLICK_TIME = 350;
     ArrayList<HomeMoudel> arrayList;
-    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
     String token = prefs.getString("Token", "");
 
-    public HomeAdapter(ArrayList<HomeMoudel> arrayListy) {
-
-        this.arrayList = arrayListy;
+    public HomeAdapter(Context context,ArrayList<HomeMoudel> homee) {
+            this.context = context;
+        this.arrayList = homee;
     }
+
+
 
     @NonNull
     @Override
@@ -55,6 +60,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 //        holder..setText(notifMoudel.getSkills());
 //        holder.title.setText( notifMoudel.getTitle() );
         holder.id.setText( homeMoudel.getid() );
+        Glide.with(context).load(homeMoudel.getPhoto()).into(holder.photo);
+        Glide.with(context).load(homeMoudel.getProfilePic()).into(holder.photouser);
         holder.Like.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -167,6 +174,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
         public ViewHolder(@NonNull View itemView) {
             super( itemView );
+
+
             cardView = itemView.findViewById( R.id.cardviewhome );
             caption = itemView.findViewById( R.id.textcard_post );
             Like = itemView.findViewById( R.id.Like_post );

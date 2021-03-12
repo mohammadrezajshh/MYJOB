@@ -1,5 +1,6 @@
 package com.karkardanand.project;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,13 +11,16 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 public class Profileadapter extends RecyclerView.Adapter<Profileadapter.ViewHolder> {
     private ProfileClickListener profaileListener;
     ArrayList<ProfailMoudel> arrayList;
-
-    public Profileadapter(ArrayList<ProfailMoudel> prof) {
+    private Context context;
+    public Profileadapter(Context context , ArrayList<ProfailMoudel> prof) {
+        this.context = context;
         this.arrayList = prof;
     }
 
@@ -35,8 +39,9 @@ public class Profileadapter extends RecyclerView.Adapter<Profileadapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull Profileadapter.ViewHolder holder, final int position) {
-        ProfailMoudel profailMoudel = arrayList.get( position );
-//        holder.id.setText(ProfailMoudel.getId());
+        final ProfailMoudel profailMoudel = arrayList.get( position );
+        holder.id.setText( profailMoudel.getID() );
+        Glide.with(context).load(profailMoudel.getPhoto()).into(holder.photo);
 //
 //        holder.photo.setImageResource(ProfailMoudel.getPhoto());
 
