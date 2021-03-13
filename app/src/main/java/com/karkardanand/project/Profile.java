@@ -130,7 +130,7 @@ String naemepeo , emailpro,skilspro;
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     JSONObject jsonObjectt = jsonArray.getJSONObject( i );
                                     prof.add( new ProfailMoudel(
-                                           jsonObjectt.getString( "id" ),jsonObjectt.getString( "photo" )));
+                                           jsonObjectt.getLong( "id" ),jsonObjectt.getString( "photo" )));
                                 }
                                 adapter = new Profileadapter( prof );
                             } catch (Exception e) {

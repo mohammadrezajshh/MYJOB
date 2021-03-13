@@ -24,6 +24,10 @@ public class Profileadapter extends RecyclerView.Adapter<Profileadapter.ViewHold
         this.arrayList = prof;
     }
 
+    public Profileadapter(ArrayList<ProfailMoudel> prof) {
+        this.arrayList = prof;
+    }
+
 //    public Profileadapter(ArrayList<HomeMoudel> arrayListy) {
 //
 //        this.arrayList = arrayListy;
@@ -40,7 +44,7 @@ public class Profileadapter extends RecyclerView.Adapter<Profileadapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull Profileadapter.ViewHolder holder, final int position) {
         final ProfailMoudel profailMoudel = arrayList.get( position );
-        holder.id.setText( profailMoudel.getID() );
+        holder.id.setText((int) profailMoudel.getID());
         Glide.with(context).load(profailMoudel.getPhoto()).into(holder.photo);
 //
 //        holder.photo.setImageResource(ProfailMoudel.getPhoto());

@@ -32,11 +32,16 @@ public class SearcheAdapter extends RecyclerView.Adapter<SearcheAdapter.ViewHold
     ArrayList<String> json=new ArrayList<String>();
     private Context context;
     private SearchListener searchListener;
-    public SearcheAdapter(Context context ,ArrayList<SearchMoudel> seasrchh) {
+
+
+    public SearcheAdapter(Context context,ArrayList<SearchMoudel> seasrchh) {
         this.context= context;
         this.arrayList= seasrchh;
     }
 
+    public SearcheAdapter(ArrayList<SearchMoudel> seasrchh) {
+        this.arrayList= seasrchh;
+    }
 
 
     @NonNull

@@ -40,7 +40,7 @@ public class MyjobsAdapter extends RecyclerView.Adapter<MyjobsAdapter.ViewHolder
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         final MyjobsMoudel myjobsmodel =arrayList.get( position );
         holder.money.setText(myjobsmodel.getMoney());
-        holder.skils.setText(myjobsmodel.getSkills());
+        holder.skils.setText(myjobsmodel.getSkill());
         holder.title.setText( myjobsmodel.getTitle() );
         //todo use glide for show image on imageView
         // holder.photo.
