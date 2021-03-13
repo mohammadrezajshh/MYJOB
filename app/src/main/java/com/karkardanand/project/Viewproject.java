@@ -3,6 +3,7 @@ package com.karkardanand.project;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +27,7 @@ TextView title;
 TextView info;
 TextView money;
 TextView skils;
+String project_id = "";
 String titlee , infoo , moneyy,skilss , id;
 private viewprojectadapter viewprojectadapter;
 RecyclerView recyclerView;
@@ -33,6 +35,8 @@ RecyclerView recyclerView;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_viewproject );
+        Intent intent = getIntent();
+        project_id = intent.getStringExtra( "projectid" );
         title = findViewById( R.id.title_view );
         info = findViewById( R.id.info_view );
         money = findViewById(R.id.money_view);
@@ -83,7 +87,7 @@ RecyclerView recyclerView;
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put( "projectId","projectid" );
+                params.put( "projectId",project_id );
                 return params;
             }
         };
@@ -100,9 +104,7 @@ RecyclerView recyclerView;
                     jo = new JSONObject( response );
                     String status= jo.getString( "status" );
                     switch(status) {
-                        case "OK":
-
-
+                        case "ok":
 
                             titlee = jo.getString( "title" );
                             infoo = jo.getString( "info" );

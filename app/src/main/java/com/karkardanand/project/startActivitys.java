@@ -9,6 +9,9 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 public class startActivitys {
+    public startActivitys(Intent intent) {
+    }
+
     public static void set(final Context context, View view, final Intent intent){
         Animation a = AnimationUtils.loadAnimation(context,R.anim.animzoomout);
         a.reset();

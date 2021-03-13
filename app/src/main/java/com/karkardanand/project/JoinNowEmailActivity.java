@@ -102,8 +102,6 @@ token_id = intent.getStringExtra( "token_id" );
             pass=edtpassword.getText().toString();
             jsonObject.put("email",email);
             jsonObject.put("password",pass);
-            jsonObject.put("Token",token_id);
-            jsonObject.put("photo","aaa.img");
 
             startActivitys.set(JoinNowEmailActivity.this,btnEmailJoin,new Intent(JoinNowEmailActivity.this,JoinNowNameActivity.class).putExtra("ret",jsonObject.toString()).putExtra( "email",email  ));
         }

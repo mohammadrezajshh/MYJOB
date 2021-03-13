@@ -122,21 +122,21 @@ public class Home extends AppCompatActivity {
 
     }
 
-    public void onClick(int id) {
-        String url = "http://apk-trt.ir/client/api/v1/api.php?command=sendRegistrationToServer&token=" + "user_id" + "13" + "Like" + "&command";
-        StringRequest stringRequest = new StringRequest( Request.Method.GET, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        } );
-        //TODO notification item clicked
-    }
+//    public void onClick(int id) {
+//        String url = "http://apk-trt.ir/client/api/v1/api.php?command=sendRegistrationToServer&token=" + "user_id" + "13" + "Like" + "&command";
+//        StringRequest stringRequest = new StringRequest( Request.Method.GET, url, new Response.Listener<String>() {
+//            @Override
+//            public void onResponse(String response) {
+//
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//
+//            }
+//        } );
+//        //TODO notification item clicked
+//    }
 
 
 }

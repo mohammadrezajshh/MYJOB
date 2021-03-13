@@ -88,6 +88,7 @@ public class Notification extends AppCompatActivity implements NotificationAdapt
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("token", token);
+                return params;
             }
         };
         RequestQueue requestQueue= Volley.newRequestQueue(this);

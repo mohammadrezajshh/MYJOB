@@ -1,6 +1,9 @@
 package com.karkardanand.project;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Parcelable;
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +17,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.prefs.NodeChangeListener;
 
 public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.ViewHolder>{
     ArrayList<NotifMoudel> arrayList;
@@ -23,6 +28,10 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     private NotifiClickListener notifiClickListener;
     public NotificationAdapter(Context context,ArrayList<NotifMoudel> notif) {
        this.context=context;
+        this.arrayList= notif;
+    }
+
+    public NotificationAdapter(ArrayList<NotifMoudel> notif) {
         this.arrayList= notif;
     }
 
@@ -35,8 +44,8 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull NotificationAdapter.ViewHolder holder, final int position) {
-        NotifMoudel notifMoudel =arrayList.get( position );
+    public void onBindViewHolder(@NonNull final NotificationAdapter.ViewHolder holder, final int position) {
+        final NotifMoudel notifMoudel =arrayList.get( position );
         holder.money.setText(notifMoudel.getMoney());
         holder.skils.setText(notifMoudel.getSkills());
         holder.title.setText( notifMoudel.getTitle() );
@@ -49,7 +58,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         holder.cardView.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivitys.set(context,holder.cardView,new Intent(context,Viewproject.class).putExtra("projectid", notifMoudel.getId()));
             }
         } );
     }

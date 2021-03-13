@@ -1,5 +1,7 @@
 package com.karkardanand.project;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,13 +16,20 @@ import java.util.ArrayList;
 
 public class MyjobsAdapter extends RecyclerView.Adapter<MyjobsAdapter.ViewHolder> {
         ArrayList<MyjobsMoudel> arrayList;
+    private Context context;
         ArrayList<String> json=new ArrayList<String>();
         private MyjobsAdapter.myjobsClickListener myjobsClickListener;
-        public MyjobsAdapter(ArrayList<MyjobsMoudel> arrayListy) {
-            ;
+        public MyjobsAdapter(Context context,ArrayList<MyjobsMoudel> arrayListy) {
+            this.context=context;
             this.arrayList= arrayListy;
         }
-        @NonNull
+
+
+
+    public MyjobsAdapter(Context context) {
+    }
+
+    @NonNull
         @Override
         public MyjobsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             View v = LayoutInflater.from( parent.getContext() ).inflate( R.layout.cardnotif  , parent , false);
@@ -28,8 +37,8 @@ public class MyjobsAdapter extends RecyclerView.Adapter<MyjobsAdapter.ViewHolder
         }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        MyjobsMoudel myjobsmodel =arrayList.get( position );
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
+        final MyjobsMoudel myjobsmodel =arrayList.get( position );
         holder.money.setText(myjobsmodel.getMoney());
         holder.skils.setText(myjobsmodel.getSkills());
         holder.title.setText( myjobsmodel.getTitle() );
@@ -39,6 +48,7 @@ public class MyjobsAdapter extends RecyclerView.Adapter<MyjobsAdapter.ViewHolder
             @Override
             public void onClick(View v) {
                 myjobsClickListener.onClick( position );
+                startActivitys.set(context,holder.cardView,new Intent(context,Viewproject.class).putExtra("projectid", myjobsmodel.getId()));
             }
         } );
     }

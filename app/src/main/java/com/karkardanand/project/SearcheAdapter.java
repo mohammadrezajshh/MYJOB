@@ -2,6 +2,7 @@ package com.karkardanand.project;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,8 +47,8 @@ public class SearcheAdapter extends RecyclerView.Adapter<SearcheAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SearcheAdapter.ViewHolder holder, final int position) {
-        SearchMoudel SearchMoudel =arrayList.get( position );
+    public void onBindViewHolder(@NonNull final SearcheAdapter.ViewHolder holder, final int position) {
+        final SearchMoudel SearchMoudel =arrayList.get( position );
         holder.money.setText(SearchMoudel.getMoney());
         holder.title.setText( SearchMoudel.getTitle() );
         Glide.with(context).load(SearchMoudel.getPhoto()).into(holder.photo);
@@ -56,31 +57,7 @@ public class SearcheAdapter extends RecyclerView.Adapter<SearcheAdapter.ViewHold
         holder.cardView.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://185.255.89.127:8081/jobapi/projectDetails/", new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                    }
-                }){
-                    @Override
-                    protected Map<String, String> getParams() throws AuthFailureError {
-                        Map<String, String> params = new HashMap<String, String>();
-//                        params.put("projectid",jso)
-                        return params;
-                    }
-                };
+                startActivitys.set(context,holder.cardView,new Intent(context,Viewproject.class).putExtra("projectid", SearchMoudel.getId()));
             }
         } );
     }

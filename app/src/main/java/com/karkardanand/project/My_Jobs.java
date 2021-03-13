@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -30,6 +31,7 @@ public class My_Jobs extends AppCompatActivity {
     MyjobsAdapter adapter;
     String user_id = "";
     String a = "1";
+    Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,8 +98,8 @@ public class My_Jobs extends AppCompatActivity {
 //            notif.add( new NotifMoudel( title, money, photo, id ) );
 
 
-        String url = "http://apk-trt.ir/client/api/v1/api.php?command=sendRegistrationToServer&token=" + "user_id" + "13" + "my_job" + "&command";
-        final StringRequest stringRequest = new StringRequest( Request.Method.GET, url,
+
+        final StringRequest stringRequest = new StringRequest( Request.Method.POST, "url",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -110,11 +112,12 @@ public class My_Jobs extends AppCompatActivity {
                             try {
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     JSONObject jsonObject = jsonArray.getJSONObject( i );
-                                    notif.add( new MyjobsMoudel( jsonObject.getString( "id" ), jsonObject.getString( "Money" ),
-                                            jsonObject.getString( "title" ), jsonObject.getString( "skils" ),
-                                            jsonObject.getInt( "photo" ) ) );
+                                    notif.add( new MyjobsMoudel( jsonObject.getLong( "id" ), jsonObject.getString( "money" ),
+                                            jsonObject.getString( "title" ), jsonObject.getString( "skill" ),
+                                            jsonObject.getString( "isActive" ) ) );
                                 }
-                                adapter = new MyjobsAdapter( notif );
+
+                                adapter = new MyjobsAdapter(context);
                                 adapter.setmyjobsClickListener( (MyjobsAdapter.myjobsClickListener) My_Jobs.this );
                             } catch (Exception e) {
                                 e.printStackTrace();
