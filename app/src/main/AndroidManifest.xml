@@ -16,7 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JobFinding"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Add_password"></activity>
+        <activity android:name=".CreatRequest"></activity>
+        <activity android:name=".Add_password" />
 
         <uses-library
             android:name="org.apache.http.legacy"
@@ -37,9 +38,6 @@
         <activity android:name=".Search_jobs" />
         <activity android:name=".Profile" />
         <activity android:name=".Main_activity" />
-        <activity
-            android:name=".DashbordActivity"
-            android:theme="@style/Theme.JobFinding" />
         <activity
             android:name=".ForgotPasswordActivity"
             android:theme="@style/Theme.JobFinding" />

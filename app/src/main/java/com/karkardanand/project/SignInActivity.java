@@ -57,7 +57,7 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
                 .build();
     }
     public void btnjoinnow(View view){
-        startActivitys.set(SignInActivity.this,btnjoinnow,new Intent(SignInActivity.this,LoginActivity.class));
+        startActivitys.set(SignInActivity.this,btnjoinnow,new Intent(SignInActivity.this,JoinNowEmailActivity.class));
     }
     public void btnForget(View view){
         startActivitys.set(SignInActivity.this,btnForget,new Intent(SignInActivity.this,ForgotPasswordActivity.class));

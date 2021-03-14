@@ -13,7 +13,7 @@ public class MyjobsMoudel {
     }
 
 
-    public Long getID() {
+    public CharSequence getID() {
         return id;
     }
 
@@ -62,7 +62,7 @@ public class MyjobsMoudel {
         return skill;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 

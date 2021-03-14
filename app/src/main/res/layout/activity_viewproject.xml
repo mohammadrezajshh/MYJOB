@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
+        android:id="@+id/lin122"
         android:background="@drawable/bordershape"
         android:orientation="vertical">
 
@@ -27,7 +28,7 @@
         android:id="@+id/title_view"/>
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="250dp"
         android:hint="info project"
         android:textSize="18sp"
         android:textStyle="italic"
@@ -74,11 +75,21 @@
             android:textStyle="normal" />
     </RelativeLayout>
     </LinearLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Creat Request"
+        android:id="@+id/creatRequest"
+        android:background="@drawable/buttonshapeblue"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/recyclerview_view"
         android:padding="10dp"/>
+
 
 
 

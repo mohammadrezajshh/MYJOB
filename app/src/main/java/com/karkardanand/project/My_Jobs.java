@@ -6,10 +6,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -24,6 +26,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class My_Jobs extends AppCompatActivity {
     FloatingActionButton fb;
@@ -31,12 +35,15 @@ public class My_Jobs extends AppCompatActivity {
     MyjobsAdapter adapter;
     String user_id = "";
     String a = "1";
+    String token = "";
     Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my__jobs);
         fb= findViewById( R.id.fab );
+        SharedPreferences shared = getSharedPreferences("MY_APP", MODE_PRIVATE);
+        String channel = (shared.getString("token", token));
         Intent intent = getIntent();
         user_id=intent.getStringExtra( "user_id" );
         recyclerView = findViewById(R.id.recyclermyjob);
@@ -99,11 +106,11 @@ public class My_Jobs extends AppCompatActivity {
 
 
 
-        final StringRequest stringRequest = new StringRequest( Request.Method.POST, "url",
+        final StringRequest stringRequest = new StringRequest( Request.Method.POST, "http://185.255.89.127:8081/jobapi/myProject/",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        final ArrayList<MyjobsMoudel> notif = new ArrayList<>();
+                        final ArrayList<MyjobsMoudel> myjobsMoudels = new ArrayList<>();
                         try {
                             JSONObject jo = new JSONObject( response );
                             JSONArray jsonArray = jo.getJSONArray( "project" );
@@ -112,7 +119,7 @@ public class My_Jobs extends AppCompatActivity {
                             try {
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     JSONObject jsonObject = jsonArray.getJSONObject( i );
-                                    notif.add( new MyjobsMoudel( jsonObject.getLong( "id" ), jsonObject.getString( "money" ),
+                                    myjobsMoudels.add( new MyjobsMoudel( jsonObject.getLong( "id" ), jsonObject.getString( "money" ),
                                             jsonObject.getString( "title" ), jsonObject.getString( "skill" ),
                                             jsonObject.getString( "isActive" ) ) );
                                 }
@@ -131,7 +138,14 @@ public class My_Jobs extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
 
             }
-        } );
+        } ){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put( "token",token );
+                return params;
+            }
+        };
         RequestQueue requestQueue= Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
 

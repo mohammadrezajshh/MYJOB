@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    tools:context=".CreatRequest"
+    android:padding="10dp"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+android:background="@drawable/bordershape"
+        android:padding="10dp"
+        android:orientation="vertical">
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Description"
+        android:textColorHint="#aeaeae"
+        android:id="@+id/et_description"
+        android:textColor="#000"
+        android:layout_marginBottom="20dp"
+        android:textSize="18sp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        >
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:hint="Money($)"
+        android:textColorHint="#aeaeae"
+        android:id="@+id/et_money"
+        android:textColor="#000"
+        android:layout_marginRight="10dp"
+        android:layout_gravity="left"
+        android:textSize="18sp"/>
+
+    <EditText
+        android:id="@+id/et_time"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:hint="Time(day)"
+        android:layout_marginLeft="10dp"
+        android:textColor="#000"
+        android:textColorHint="#aeaeae"
+        android:textSize="18sp" />
+    </LinearLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buttonshapeblue"
+            android:layout_marginTop="10dp"
+            android:text="Send Request"
+            android:id="@+id/send_req0"/>
+    </LinearLayout>
+
+
+</LinearLayout>

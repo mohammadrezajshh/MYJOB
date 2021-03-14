@@ -81,25 +81,14 @@
                         android:id="@+id/btnchat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="100dp"
+                        android:layout_marginLeft="150dp"
                         android:layout_marginTop="20dp"
                         android:background="@drawable/buttonshapeblue"
                         android:gravity="center"
+
                         android:text="Chat"
                         android:textColor="#FFF" />
-                    <Button
-                        android:id="@+id/btnemail"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginRight="100dp"
-                        android:layout_alignParentRight="true"
-                        android:background="@drawable/buttonshapeblue"
-                        android:gravity="center"
-                        android:text="Email"
-                        android:textColor="#FFF"
-                        />
+
 
 
                     <TextView
@@ -112,14 +101,7 @@
                         android:layout_gravity="center"
                         android:textColor="#1991D0" />
                 </RelativeLayout>
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Accept"
-                    android:id="@+id/active"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_gravity="center"/>
+
 
 
             </LinearLayout>

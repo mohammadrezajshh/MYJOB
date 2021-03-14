@@ -3,8 +3,11 @@ package com.karkardanand.project;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,13 +15,13 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,8 +30,11 @@ TextView title;
 TextView info;
 TextView money;
 TextView skils;
+Button creatreq;
+    RequestAdapter adapter;
 String project_id = "";
 String titlee , infoo , moneyy,skilss , id;
+Context context;
 private viewprojectadapter viewprojectadapter;
 RecyclerView recyclerView;
     @Override
@@ -36,6 +42,7 @@ RecyclerView recyclerView;
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_viewproject );
         Intent intent = getIntent();
+        creatreq= findViewById(R.id.creatRequest);
         project_id = intent.getStringExtra( "projectid" );
         title = findViewById( R.id.title_view );
         info = findViewById( R.id.info_view );
@@ -47,14 +54,22 @@ RecyclerView recyclerView;
         info.setText( infoo );
         money.setText( moneyy );
         skils.setText( skilss );
+        creatreq.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),CreatRequest.class).putExtra("projectId",project_id);
+                startActivity(intent);
+            }
+        });
         jsonparsee();
     }
 //todo list of request
     private void jsonparse() {
     ;
-        StringRequest stringRequest = new StringRequest( Request.Method.POST, "http://185.255.89.127:8081/jobapi/projectDeatails/", new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest( Request.Method.POST, "http://185.255.89.127:8081/jobapi/prohectDetails/", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+
                 JSONObject jo = null;
                 try {
                     jo = new JSONObject( response );
@@ -92,29 +107,41 @@ RecyclerView recyclerView;
             }
         };
     }
+    public static Context context() {
+        return context();
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
+    }
 
 //todo request of recycler
     private void jsonparsee() {
 
-        StringRequest stringRequest = new StringRequest( Request.Method.POST, "url", new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest( Request.Method.POST, "http://185.255.89.127:8081/jobapi/getRequest/", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                JSONObject jo = null;
-                try {
-                    jo = new JSONObject( response );
-                    String status= jo.getString( "status" );
-                    switch(status) {
-                        case "ok":
+                final ArrayList<AllRequest> allRequests = new ArrayList<>();
 
-                            titlee = jo.getString( "title" );
-                            infoo = jo.getString( "info" );
-                            moneyy = jo.getString( "money" );
-                            skilss = jo.getString( "skills" );
-                            id = jo.getString( "id" );
-                            break;
-                        default:
-                            Toast.makeText( Viewproject.this, "Erorr", Toast.LENGTH_SHORT ).show();
-                    }
+                    try {
+                        JSONObject jo = new JSONObject( response );
+                        JSONArray jsonArray = jo.getJSONArray( "allRequests" );
+
+
+                        try {
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject jsonObject = jsonArray.getJSONObject( i );
+                                allRequests.add( new AllRequest( jsonObject.getLong( "id" ), jsonObject.getString( "description" ),
+                                        jsonObject.getLong( "idProject" ), jsonObject.getString( "token" ),
+                                        jsonObject.getString( "money" ),jsonObject.getString("duration") ) );
+                            }
+
+
+                            adapter = new RequestAdapter(context);
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -131,7 +158,7 @@ RecyclerView recyclerView;
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-//                params.put( "projectId","projectid" );
+                params.put( "projectId",project_id );
                 return params;
             }
         };

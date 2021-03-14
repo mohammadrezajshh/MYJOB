@@ -36,11 +36,37 @@
             android:layout_marginTop="35dp"
             android:layout_marginBottom="35dp"
             android:textSize="20sp"
-            android:id="@+id/monet_myjob"
+            android:id="@+id/money_myjob"
             android:textColor="#000"
             android:fontFamily="serif"
             android:layout_marginEnd="20dp"
             android:layout_marginRight="20dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:id="@+id/id_cardmyjob"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/money_myjob"
+            android:layout_alignParentLeft="true"
+            android:text="Skill"
+            android:layout_marginLeft="20dp"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:id="@+id/skill_projectmyjob"/>
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/money_myjob"
+            android:layout_alignParentRight="true"
+            android:text="Inactive"
+            android:layout_marginRight="20dp"
+            android:textSize="15sp"
+            android:id="@+id/inactiveproject"/>
+
     </RelativeLayout>
 
 
