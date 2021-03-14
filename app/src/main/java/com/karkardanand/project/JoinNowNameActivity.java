@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,6 +29,8 @@ public class JoinNowNameActivity extends AppCompatActivity {
         try {
             json=new JSONObject(intent.getStringExtra("ret"));
         } catch (JSONException e) {
+            Log.e("Ex32", e.toString());
+
             e.printStackTrace();
         }
     }

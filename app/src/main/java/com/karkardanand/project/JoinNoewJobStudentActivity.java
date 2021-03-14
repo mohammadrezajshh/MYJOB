@@ -3,6 +3,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -26,6 +27,8 @@ public class JoinNoewJobStudentActivity extends AppCompatActivity {
         try {
             json=new JSONObject(intent.getStringExtra("ret"));
         } catch (JSONException e) {
+            Log.e("Ex32", e.toString());
+
             e.printStackTrace();
         }
         edtunvername=(AutoCompleteTextView)findViewById(R.id.edtunvername);
@@ -50,7 +53,7 @@ public class JoinNoewJobStudentActivity extends AppCompatActivity {
             Alert.shows(JoinNoewJobStudentActivity.this,"","Please complete the information","OK","");
         }else {
             try {
-                json.put("student",true);
+                json.put("student","True");
                 JSONObject jsonObjectinfo=new JSONObject();
                 jsonObjectinfo.put("university",edtunvername.getText().toString());
                 jsonObjectinfo.put("Degree",edtDegree.getText().toString());

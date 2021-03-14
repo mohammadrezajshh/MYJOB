@@ -40,7 +40,7 @@ public class Add_codeEmail extends AppCompatActivity {
         pass = (EditText) findViewById( R.id.edtPass );
         btnEmailJoin = (Button) findViewById( R.id.btnEmailJoin );
         intent = getIntent();
-        passs = pass.toString();
+        passs = pass.getText().toString();
         token=intent.getStringExtra( "token");
         jsonparsee();
         if (passs == passcod){
@@ -51,7 +51,8 @@ public class Add_codeEmail extends AppCompatActivity {
 
     }
 
-    private void jsonparsee() { StringRequest stringRequest = new StringRequest( Request.Method.POST, "http://185.255.89.127:8081/jobapi/getPassword/", new Response.Listener<String>() {
+    private void jsonparsee() {
+        StringRequest stringRequest = new StringRequest( Request.Method.POST, "http://185.255.89.127:8081/jobapi/getPassword/", new Response.Listener<String>() {
         @Override
         public void onResponse(String response) {
 

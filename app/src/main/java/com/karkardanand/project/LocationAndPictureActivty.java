@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -14,7 +15,7 @@ import org.json.JSONObject;
 public class LocationAndPictureActivty extends AppCompatActivity {
     AutoCompleteTextView edtlocation;
     Button btnloc,btnSkip;
-    private JSONObject json,jsonn;
+    private JSONObject json;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +28,11 @@ public class LocationAndPictureActivty extends AppCompatActivity {
         Intent intent=getIntent();
         try {
             json=new JSONObject(intent.getStringExtra("ret"));
-            jsonn=new JSONObject(intent.getStringExtra("infoData"));
+          //  jsonn=new JSONObject(intent.getStringExtra("infoData"));
+            Log.e("Ex32", json.toString() );
+
         } catch (JSONException e) {
+            Log.e("Ex32", e.toString());
             e.printStackTrace();
         }
 
@@ -49,6 +53,6 @@ public class LocationAndPictureActivty extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        startActivitys.set(LocationAndPictureActivty.this,btnSkip,new Intent(LocationAndPictureActivty.this,PictureActivity.class).putExtra("ret",json.toString()).putExtra( "infoData",jsonn.toString() ));
+        startActivitys.set(LocationAndPictureActivty.this,btnSkip,new Intent(LocationAndPictureActivty.this,PictureActivity.class).putExtra("ret",json.toString()));
     }
 }

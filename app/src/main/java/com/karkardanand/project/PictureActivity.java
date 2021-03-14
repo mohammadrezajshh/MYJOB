@@ -67,12 +67,12 @@ import java.util.ResourceBundle;
 import java.util.UUID;
 
 public class PictureActivity extends AppCompatActivity {
-    private static final int IMAGE_PICK_CODE = 10;
+    private static final int IMAGE_PICK_CODE = 2001;
     static String pathimage;
     ImageView imgprofile;
     Button btnpicture, btnSkip;
     private ArrayList<String> listPermissionsNeeded;
-    private JSONObject json,jsonn;
+    private JSONObject json;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,10 +84,11 @@ public class PictureActivity extends AppCompatActivity {
         Intent intent=getIntent();
         try {
             json=new JSONObject(intent.getStringExtra("ret"));
-            jsonn=new JSONObject(intent.getStringExtra("infoData"));
+          //  jsonn=new JSONObject(intent.getStringExtra("infoData"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        Log.e("Ex32", json.toString() );
 //StringRequest stringRequest = new StringRequest( Request.Method.POST, "http://apk-trt.ir/app/signup.php?", new Response.Listener<String>() {
 //    @Override
 //    public void onResponse(String response) {
@@ -161,57 +162,34 @@ public class PictureActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult( requestCode, resultCode, data );
-
         try {
 
             if (requestCode == IMAGE_PICK_CODE) {
-                Uri selectedImageUri = data.getData();
+                Bitmap photo = (Bitmap) data.getExtras().get("data");
+                imgprofile.setImageBitmap(photo);
+                ImageHelper imageHelper=new ImageHelper();
+                imageHelper.getRoundedCornerBitmap(photo,75);
+                savebitmap(photo);
+              //  Log.e( "stuf", pathimage.toString() );
+               // cursor.close();
+                new Thread( new Runnable() {
+                    @Override
+                    public void run() {
+                        HttpClient httpclient = new DefaultHttpClient();
+                        HttpPost httpPost = new HttpPost( "http://185.255.89.127:8081/jobapi/saveInfo/" );
 
+                        Handler handler = new Handler( Looper.getMainLooper() );
 
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap( getContentResolver(), selectedImageUri );
-
-                String[] filePathColumn = {MediaStore.Images.Media.DATA};
-
-                // Get the cursor
-                Cursor cursor = getContentResolver().query( selectedImageUri,
-                        filePathColumn, null, null, null );
-                // Move to first row
-                cursor.moveToFirst();
-
-                int columnIndex = cursor.getColumnIndex( filePathColumn[0] );
-                pathimage = cursor.getString( columnIndex );
-
-                Log.e( "stuf", pathimage.toString() );
-                cursor.close();
-
-                imgprofile.setImageBitmap( bitmap );
-            }
-
-        } catch (Exception e) {
-            Log.e( "stuf", e.getMessage() );
-
-        }
-    }
-
-    {
-        new Thread( new Runnable() {
-            @Override
-            public void run() {
-                HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httpPost = new HttpPost( "http://185.255.89.127:8081/jobapi/saveInfo/" );
-
-                Handler handler = new Handler( Looper.getMainLooper() );
-
-                try {
-                    MultipartEntity entity = new MultipartEntity();
-                    try {
-                        entity.addPart( "email", new StringBody( json.getString( "email" ).toString(), Charset.forName( "UTF8" ) ) );
-                        entity.addPart( "password", new StringBody( json.getString( "password" ).toString(), Charset.forName( "UTF8" ) ) );
-                        entity.addPart( "lastName", new StringBody( json.getString( "lastName" ).toString(), Charset.forName( "UTF8" ) ) );
-                        entity.addPart( "firstName", new StringBody( json.getString( "firstName" ).toString(), Charset.forName( "UTF8" ) ) );
-                        entity.addPart( "country", new StringBody( json.getString( "country" ).toString(), Charset.forName( "UTF8" ) ) );
-                        entity.addPart( "student", new StringBody( json.getString( "student" ).toString(), Charset.forName( "UTF8" ) ) );
-                        entity.addPart( "infoData", new StringBody( jsonn.toString(), Charset.forName( "UTF8" ) ) );
+                        try {
+                            MultipartEntity entity = new MultipartEntity();
+                            try {
+                                entity.addPart( "email", new StringBody( json.getString( "email" ).toString(), Charset.forName( "UTF8" ) ) );
+                                entity.addPart( "password", new StringBody( json.getString( "password" ).toString(), Charset.forName( "UTF8" ) ) );
+                                entity.addPart( "lastName", new StringBody( json.getString( "lastName" ).toString(), Charset.forName( "UTF8" ) ) );
+                                entity.addPart( "firstName", new StringBody( json.getString( "firstName" ).toString(), Charset.forName( "UTF8" ) ) );
+                                entity.addPart( "country", new StringBody( json.getString( "location" ).toString(), Charset.forName( "UTF8" ) ) );
+                                entity.addPart( "student", new StringBody( json.getString( "student" ).toString(), Charset.forName( "UTF8" ) ) );
+                                entity.addPart( "infoData", new StringBody( json.getJSONObject("info").toString(), Charset.forName( "UTF8" ) ) );
 
 
 //                    } catch (UnsupportedEncodingException e) {
@@ -222,74 +200,83 @@ public class PictureActivity extends AppCompatActivity {
 ////                                Toast.makeText(Loginguse.this, e.getMessage(), Toast.LENGTH_SHORT).show();
 //                            }
 //                        });
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                    File file = new File( pathimage.toString() );
-
-                    FileBody fileBody = new FileBody( file );
-                    entity.addPart( "picture", fileBody );
-                    httpPost.setEntity( entity );
-
-
-                    HttpResponse response = httpclient.execute( httpPost );
-                    HttpEntity httpEntity = response.getEntity();
-                    String _response = EntityUtils.toString( httpEntity ); // content will be consume only once
-                    try {
-
-                        final JSONObject jObject = new JSONObject( _response );
-                        String status = jObject.getString( "status" );
-                        switch (status){
-                            case "ok":
-                                String token = jObject.getString( "token" );
-                                SharedPreferences preferences = PictureActivity.this.getSharedPreferences("MY_APP",Context.MODE_PRIVATE);
-                                preferences.edit().putString("TOKEN",token).apply();
-                                Intent intent = new Intent(getApplicationContext(),Add_codeEmail.class).putExtra( "token",token );
-                                startActivity( intent );
-                                break;
-                            default:
-                                Toast.makeText( PictureActivity.this, "Please try again", Toast.LENGTH_SHORT ).show();
-                        }
-
-
-                    } catch (JSONException e) {
-                        // dialog.dismiss();
-                        handler.post( new Runnable() {
-                            @Override
-                            public void run() {
-                                Log.e( "stuf", "2" );
-                                // Toast.makeText(Loginguse.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            } catch (JSONException e) {
+                                Log.e("Ex323", e.toString() );
+                                e.printStackTrace();
                             }
-                        } );
+                            File file = new File( Environment.getExternalStorageDirectory().getAbsolutePath()+"/profile.png" );
+
+                            FileBody fileBody = new FileBody( file );
+                            entity.addPart( "picture", fileBody );
+                            httpPost.setEntity( entity );
+
+
+                            HttpResponse response = httpclient.execute( httpPost );
+                            HttpEntity httpEntity = response.getEntity();
+                            String _response = EntityUtils.toString( httpEntity ); // content will be consume only once
+                            Log.e("Ex323", _response );
+                            try {
+
+                                final JSONObject jObject = new JSONObject( _response );
+                                String status = jObject.getString( "status" );
+                                switch (status){
+                                    case "ok":
+                                        String token = jObject.getString( "token" );
+                                        SharedPreferences preferences = PictureActivity.this.getSharedPreferences("MY_APP",Context.MODE_PRIVATE);
+                                        preferences.edit().putString("TOKEN",token).apply();
+                                        Intent intent = new Intent(getApplicationContext(),Add_codeEmail.class).putExtra( "token",token );
+                                        startActivity( intent );
+                                        break;
+                                    default:
+                                        Toast.makeText( PictureActivity.this, "Please try again", Toast.LENGTH_SHORT ).show();
+                                }
+
+
+                             } catch (JSONException e) {
+                                Log.e("Ex323", e.toString() );
+                                // dialog.dismiss();
+                                handler.post( new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Log.e( "stuf", "2" );
+                                        // Toast.makeText(Loginguse.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                } );
+
+                            }
+
+
+                        } catch (ClientProtocolException e) {
+                            // dialog.dismiss();
+                            handler.post( new Runnable() {
+                                @Override
+                                public void run() {
+                                    Log.e( "stuf", "3" );
+//                            Toast.makeText(Loginguse.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            } );
+                        } catch (IOException e) {
+                            //dialog.dismiss();
+                            handler.post( new Runnable() {
+                                @Override
+                                public void run() {
+                                    Log.e( "stuf", "4" );
+                                    // Toast.makeText(Loginguse.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            } );
+                        }
 
                     }
-
-
-                } catch (ClientProtocolException e) {
-                    // dialog.dismiss();
-                    handler.post( new Runnable() {
-                        @Override
-                        public void run() {
-                            Log.e( "stuf", "3" );
-//                            Toast.makeText(Loginguse.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    } );
-                } catch (IOException e) {
-                    //dialog.dismiss();
-                    handler.post( new Runnable() {
-                        @Override
-                        public void run() {
-                            Log.e( "stuf", "4" );
-                            // Toast.makeText(Loginguse.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    } );
-                }
+                } ).start();
 
             }
-        } ).start();
 
+        } catch (Exception e) {
+            Log.e( "stuf", e.getMessage() );
 
+        }
     }
+
 
 
 
