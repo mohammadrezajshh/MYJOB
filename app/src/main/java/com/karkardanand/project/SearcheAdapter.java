@@ -39,9 +39,6 @@ public class SearcheAdapter extends RecyclerView.Adapter<SearcheAdapter.ViewHold
         this.arrayList= seasrchh;
     }
 
-    public SearcheAdapter(ArrayList<SearchMoudel> seasrchh) {
-        this.arrayList= seasrchh;
-    }
 
 
     @NonNull

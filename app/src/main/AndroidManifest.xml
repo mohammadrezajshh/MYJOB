@@ -30,9 +30,8 @@
         <activity android:name=".Setnum" />
         <activity android:name=".Add_codeEmail" />
         <activity android:name=".EdditProfail" />
-        <activity android:name=".Add_Job" />
         <activity android:name=".ChatActivity" />
-        <activity android:name=".Home" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".My_Jobs" />
         <activity android:name=".Notification" />
         <activity android:name=".Search_jobs" />
@@ -66,7 +65,7 @@
             android:name=".LoginActivity"
             android:theme="@style/Theme.JobFinding" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Home"
             android:theme="@style/Theme.JobFinding">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

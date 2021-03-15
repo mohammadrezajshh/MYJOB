@@ -41,7 +41,7 @@ public class AllRequest {
             this.token = token;
         }
 
-        public CharSequence getID() { return id; }
+        public long getID() { return id; }
 
         public void setID(long value) { this.id = value; }
 
@@ -63,7 +63,7 @@ public class AllRequest {
 
 
 
-        public CharSequence getIDProject() { return idProject; }
+        public long getIDProject() { return idProject; }
 
         public void setIDProject(long value) { this.idProject = value; }
 

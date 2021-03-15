@@ -113,7 +113,7 @@ public class My_Jobs extends AppCompatActivity {
                         final ArrayList<MyjobsMoudel> myjobsMoudels = new ArrayList<>();
                         try {
                             JSONObject jo = new JSONObject( response );
-                            JSONArray jsonArray = jo.getJSONArray( "project" );
+                            JSONArray jsonArray = jo.getJSONArray( "allMyProjects" );
 
 
                             try {

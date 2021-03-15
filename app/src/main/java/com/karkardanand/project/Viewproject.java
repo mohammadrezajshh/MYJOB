@@ -27,6 +27,7 @@ import java.util.Map;
 
 public class Viewproject extends AppCompatActivity {
 TextView title;
+ArrayList<AllRequest> arrayList;
 TextView info;
 TextView money;
 TextView skils;
@@ -35,7 +36,7 @@ Button creatreq;
 String project_id = "";
 String titlee , infoo , moneyy,skilss , id;
 Context context;
-private viewprojectadapter viewprojectadapter;
+private RequestAdapter requestAdapter;
 RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,7 +138,7 @@ RecyclerView recyclerView;
                             }
 
 
-                            adapter = new RequestAdapter(context);
+                            adapter = new RequestAdapter(context,arrayList);
 
                         } catch (Exception e) {
                             e.printStackTrace();

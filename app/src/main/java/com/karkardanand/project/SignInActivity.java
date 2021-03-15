@@ -148,7 +148,7 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
            //edtEmail.setText(account.getEmail());
             Toast.makeText(this, account.getEmail(), Toast.LENGTH_SHORT).show();
             //send it to server and get token
-            startActivitys.set(SignInActivity.this,btnGSign,new Intent(SignInActivity.this,DashbordActivity.class));
+//            startActivitys.set(SignInActivity.this,btnGSign,new Intent(SignInActivity.this,DashbordActivity.class));
         }else{
             Toast.makeText(this, "failed", Toast.LENGTH_SHORT).show();
         }

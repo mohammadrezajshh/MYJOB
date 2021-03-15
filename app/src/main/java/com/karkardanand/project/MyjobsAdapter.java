@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +30,7 @@ import java.util.Map;
 
 public class MyjobsAdapter extends RecyclerView.Adapter<MyjobsAdapter.ViewHolder> {
         ArrayList<MyjobsMoudel> arrayList;
+        int string;
     private Context context;
 
         private MyjobsAdapter.myjobsClickListener myjobsClickListener;
@@ -60,6 +60,7 @@ public class MyjobsAdapter extends RecyclerView.Adapter<MyjobsAdapter.ViewHolder
         holder.id.setText(myjobsmodel.getID());
         holder.title.setText( myjobsmodel.getTitle() );
         holder.Skill.setText( myjobsmodel.getSkill() );
+        string=myjobsmodel.getId();
         holder.inactive.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -91,8 +92,8 @@ public class MyjobsAdapter extends RecyclerView.Adapter<MyjobsAdapter.ViewHolder
                     }){
                         @Override
                         protected Map<String, String> getParams() throws AuthFailureError {
-                            Map<String, String> params = new HashMap<String, String>();
-                            params.put( "projectid",myjobsmodel.getId() );
+                            Map<String, String> params = new HashMap<>();
+                            params.put( "projectid",String.valueOf(string ));
                             return params;
                         }
                     };

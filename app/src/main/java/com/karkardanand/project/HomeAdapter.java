@@ -38,15 +38,10 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
     String token = prefs.getString("Token", "");
 
-    public HomeAdapter(Context context,ArrayList<HomeMoudel> homee) {
-            this.context = context;
-        this.arrayList = homee;
+    public HomeAdapter(Context context, ArrayList<HomeMoudel> arrayList) {
+        this.context = context;
+        this.arrayList = arrayList;
     }
-
-    public HomeAdapter(ArrayList<HomeMoudel> homee) {
-        this.arrayList = homee;
-    }
-
 
     @NonNull
     @Override
@@ -62,7 +57,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         holder.caption.setText( homeMoudel.getCaption() );
 //        holder..setText(notifMoudel.getSkills());
 //        holder.title.setText( notifMoudel.getTitle() );
-        holder.id.setText( homeMoudel.getid() );
+        holder.id.setText( homeMoudel.getID() );
         Glide.with(context).load(homeMoudel.getPhoto()).into(holder.photo);
         Glide.with(context).load(homeMoudel.getProfilePic()).into(holder.photouser);
         holder.Like.setOnClickListener( new View.OnClickListener() {
@@ -145,7 +140,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
                         @Override
                         protected Map<String, String> getParams() throws AuthFailureError {
                             Map<String, String> params = new HashMap<String, String>();
-                            params.put( "postid", String.valueOf( homeMoudel.getId() ) );
+                            params.put( "postid", String.valueOf( homeMoudel.getID() ) );
                             params.put( "token", token );
                             return params;
                         }

@@ -3,6 +3,7 @@ package com.karkardanand.project;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -32,7 +33,7 @@ import java.util.Map;
 
 public class Search_jobs extends AppCompatActivity {
     AutoCompleteTextView search;
-
+    Context context;
     ImageView chat;
     ImageView notif;
     String searcher;
@@ -100,6 +101,13 @@ public class Search_jobs extends AppCompatActivity {
         jsonparse();
 
     }
+    public static Context context() {
+        return context();
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
+    }
 
     private void jsonparse() {
 
@@ -120,7 +128,7 @@ public class Search_jobs extends AppCompatActivity {
                                             jsonObject.getString( "title" ),
                                             jsonObject.getString( "photo" ) ) );
                                 }
-                                adapter = new SearcheAdapter( seasrchh );
+                                adapter = new SearcheAdapter( context,seasrchh );
                                 adapter.setSearchListener( (SearcheAdapter.SearchListener) Search_jobs.this );
                             } catch (Exception e) {
                                 e.printStackTrace();

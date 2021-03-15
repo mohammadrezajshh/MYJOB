@@ -1,7 +1,7 @@
 package com.karkardanand.project;
 
 public class MyjobsMoudel {
-    private Long id;
+    private int id;
     private String title;
     private String description;
     private String money;
@@ -13,11 +13,11 @@ public class MyjobsMoudel {
     }
 
 
-    public CharSequence getID() {
+    public int getID() {
         return id;
     }
 
-    public void setID(Long value) {
+    public void setID(int value) {
         this.id = value;
     }
 
@@ -62,11 +62,11 @@ public class MyjobsMoudel {
         return skill;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

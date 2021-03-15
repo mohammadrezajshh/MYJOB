@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
@@ -63,16 +64,17 @@ public class  JoinNowJobActivity extends AppCompatActivity {
         }else {
             try {
                 json.put("student","False");
-                JSONObject jsonObjectinfo=new JSONObject();
-                jsonObjectinfo.put("job",edtrecentJob.getText().toString());
-                jsonObjectinfo.put("company",edtcompaney.getText().toString());
-                jsonObjectinfo.put("skill",edtindustry.getText().toString());
-                json.put("info",jsonObjectinfo);
+                JSONObject jsonObject = new JSONObject();
+                jsonObject.put("job",edtrecentJob.getText().toString());
+                jsonObject.put("company",edtcompaney.getText().toString());
+                jsonObject.put("skill",edtindustry.getText().toString());
 
+                startActivitys.set(JoinNowJobActivity.this,btnjoinnow,new Intent(JoinNowJobActivity.this,LocationAndPictureActivty.class).putExtra("ret",json.toString()).putExtra("info",jsonObject.toString()));
             } catch (JSONException e) {
             e.printStackTrace();
         }
 
-            startActivitys.set(JoinNowJobActivity.this,btnjoinnow,new Intent(JoinNowJobActivity.this,LocationAndPictureActivty.class).putExtra("ret",json.toString()));}
+
+        }
     }
 }

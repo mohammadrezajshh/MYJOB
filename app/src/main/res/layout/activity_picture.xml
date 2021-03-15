@@ -25,7 +25,7 @@
       android:layout_marginTop="60dp"
       android:src="@drawable/ic_man"
       />
-  <androidx.appcompat.widget.AppCompatButton
+  <Button
       android:layout_width="match_parent"
       android:layout_height="60dp"
       android:layout_below="@+id/imgceneter"
@@ -41,7 +41,7 @@
       android:layout_marginBottom="30dp"
 
       android:layout_above="@+id/btnSkip"/>
-  <androidx.appcompat.widget.AppCompatButton
+  <Button
       android:layout_width="match_parent"
       android:layout_height="60dp"
       android:visibility="visible"
@@ -53,7 +53,6 @@
       android:textAllCaps="false"
       android:background="@drawable/bordershape"
       android:id="@+id/btnSkip"
-      android:onClick="btnSkip"
       tools:ignore="OnClick"
       android:layout_alignParentBottom="true"
       android:layout_marginBottom="30dp"

@@ -62,6 +62,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.UUID;
@@ -72,7 +73,7 @@ public class PictureActivity extends AppCompatActivity {
     ImageView imgprofile;
     Button btnpicture, btnSkip;
     private ArrayList<String> listPermissionsNeeded;
-    private JSONObject json;
+    private JSONObject json,jsonObject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,10 +82,70 @@ public class PictureActivity extends AppCompatActivity {
         imgprofile = (ImageView) findViewById( R.id.imgprofile );
         btnpicture = (Button) findViewById( R.id.btnpicture );
         btnSkip = (Button) findViewById( R.id.btnSkip );
+        btnSkip.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Log.e("onCLick" , "onclic");
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://185.255.89.127:8081/jobapi/saveInfo/", new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String status = jsonObject.getString("status");
+                            switch (status){
+                                case "ok":
+                                    String token = jsonObject.getString( "token" );
+                                    SharedPreferences preferences = PictureActivity.this.getSharedPreferences("MY_APP",Context.MODE_PRIVATE);
+                                    preferences.edit().putString("TOKEN",token).apply();
+                                    Intent intent = new Intent(getApplicationContext(),Add_codeEmail.class).putExtra( "token",token );
+                                    startActivity( intent );
+                                    break;
+                                default:
+                                    Toast.makeText(PictureActivity.this, "erorr", Toast.LENGTH_SHORT).show();
+                                    break;
+
+                            }
+                        } catch (JSONException e) {
+                            Toast.makeText(PictureActivity.this, e.getMessage() + "",Toast.LENGTH_LONG).show();
+                            e.printStackTrace();
+                        }
+
+
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(PictureActivity.this, "erorr", Toast.LENGTH_SHORT).show();
+                    }
+                }){
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        Map<String,String>params = new HashMap<String, String>();
+                        try {
+                            params.put("email", json.getString( "email" ));
+                            params.put("password", json.getString( "password" ));
+                            params.put("lastName", json.getString( "lastName" ));
+                            params.put("firstName", json.getString( "firstName" ));
+                            params.put("picture", null);
+                            params.put("country", json.getString( "country" ).toString());
+                            params.put("student", json.getString( "student" ).toString());
+                            params.put("infoData", jsonObject.getJSONObject("info").toString());
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        return params;
+                    }
+
+                };
+                RequestQueue requestQueue= Volley.newRequestQueue(PictureActivity.this);
+                requestQueue.add(stringRequest);
+            }
+        });
         Intent intent=getIntent();
         try {
             json=new JSONObject(intent.getStringExtra("ret"));
-          //  jsonn=new JSONObject(intent.getStringExtra("infoData"));
+            jsonObject=new JSONObject(intent.getStringExtra("info"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -189,7 +250,7 @@ public class PictureActivity extends AppCompatActivity {
                                 entity.addPart( "firstName", new StringBody( json.getString( "firstName" ).toString(), Charset.forName( "UTF8" ) ) );
                                 entity.addPart( "country", new StringBody( json.getString( "location" ).toString(), Charset.forName( "UTF8" ) ) );
                                 entity.addPart( "student", new StringBody( json.getString( "student" ).toString(), Charset.forName( "UTF8" ) ) );
-                                entity.addPart( "infoData", new StringBody( json.getJSONObject("info").toString(), Charset.forName( "UTF8" ) ) );
+                                entity.addPart( "infoData", new StringBody( jsonObject.getJSONObject("info").toString(), Charset.forName( "UTF8" ) ) );
 
 
 //                    } catch (UnsupportedEncodingException e) {

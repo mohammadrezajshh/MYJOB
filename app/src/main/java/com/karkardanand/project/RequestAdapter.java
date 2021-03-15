@@ -28,7 +28,8 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
     Dialog dialog;
     String token;
 
-    public RequestAdapter(Context context) {
+
+    public RequestAdapter(Context context ,ArrayList<AllRequest> arrayList) {
         this.arrayList = arrayList;
         this.context = context;
     }
@@ -45,11 +46,11 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
         dialog = new Dialog( context );
         final AllRequest allRequest =arrayList.get( position );
         holder.token.setText(allRequest.getToken());
-        holder.id.setText(allRequest.getID());
+        holder.id.setText((int) allRequest.getID());
         holder.description.setText(allRequest.getDescription());
         holder.money.setText(allRequest.getMoney());
         holder.time.setText(allRequest.getToken());
-        holder.idproject.setText(allRequest.getIDProject());
+        holder.idproject.setText((int) allRequest.getIDProject());
         token = allRequest.getToken();
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override

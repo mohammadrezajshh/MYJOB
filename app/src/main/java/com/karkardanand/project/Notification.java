@@ -1,5 +1,6 @@
 package com.karkardanand.project;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ import java.util.Map;
 public class Notification extends AppCompatActivity implements NotificationAdapter.NotifiClickListener {
     View cardView;
     String user_id = "";
+    Context context;
     private RecyclerView recyclerView;
     private NotificationAdapter adapter;
     private NotificationAdapter exampleAdapter;
@@ -42,8 +44,8 @@ public class Notification extends AppCompatActivity implements NotificationAdapt
         jsonparse();
 
     }
-    SharedPreferences shared = getSharedPreferences("MY_APP", MODE_PRIVATE);
-    String token = (shared.getString("token", ""));
+//    SharedPreferences shared = getSharedPreferences("MY_APP", MODE_PRIVATE);
+//    String token = (shared.getString("token", ""));
 
     private void jsonparse() {
 
@@ -65,11 +67,11 @@ public class Notification extends AppCompatActivity implements NotificationAdapt
                             try {
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     JSONObject jsonObject = jsonArray.getJSONObject( i );
-                                    notif.add( new NotifMoudel( jsonObject.getString( "id" ), jsonObject.getString( "Money" ),
+                                    notif.add( new NotifMoudel( jsonObject.getInt( "id" ), jsonObject.getString( "Money" ),
                                             jsonObject.getString( "title" ), jsonObject.getString( "skils" ),
                                             jsonObject.getInt( "photo" ) ) );
                                 }
-                                adapter = new NotificationAdapter( notif );
+                                adapter = new NotificationAdapter( notif,context );
                                 adapter.setNotifiClickListener( Notification.this );
                             } catch (Exception e) {
                                 e.printStackTrace();
@@ -87,7 +89,7 @@ public class Notification extends AppCompatActivity implements NotificationAdapt
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("token", token);
+                params.put("token", "c3a502127e75596d517c9fb573579025");
                 return params;
             }
         };

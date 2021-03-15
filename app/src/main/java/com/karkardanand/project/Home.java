@@ -3,10 +3,15 @@ package com.karkardanand.project;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toolbar;
 
 import com.android.volley.AuthFailureError;
@@ -23,18 +28,40 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Home extends AppCompatActivity {
     private HomeAdapter adapter;
-
+    ArrayList<HomeMoudel> arrayList;
+    Context context;
+   String token;
+   ImageView chat;
+   ImageView notif;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_home );
-        BottomNavigationView bottomNavigationView = findViewById( R.id.bt_nav );
+        chat = (ImageView)findViewById(R.id.chat) ;
+        notif = (ImageView)findViewById(R.id.notification) ;
+        notif.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),Notification.class);
+                startActivity(intent);
+            }
+        });
+        chat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),ListChat.class);
+                startActivity(intent);
+            }
+        });
+        BottomNavigationView bottomNavigationView = findViewById( R.id.bottom_nav );
         bottomNavigationView.setSelectedItemId( R.id.bn_Home );
-
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+         token = prefs.getString("MY_APP", "token");
 
     
         bottomNavigationView.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
@@ -42,6 +69,7 @@ public class Home extends AppCompatActivity {
             public void onNavigationItemReselected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()){
                     case R.id.bn_Home:
+                        return;
                     case R.id.bn_Profail:
                         startActivity(new Intent(getApplicationContext(),
                                 Profile.class));
@@ -71,6 +99,13 @@ public class Home extends AppCompatActivity {
         });
         jsonparse();
     }
+    public static Context context() {
+        return context();
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
+    }
 
     private void jsonparse() {
 
@@ -93,10 +128,10 @@ public class Home extends AppCompatActivity {
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     JSONObject jsonObject = jsonArray.getJSONObject( i );
                                     homee.add( new HomeMoudel(
-                                            jsonObject.getString( "caption" ), jsonObject.getString( "id" ),
+                                            jsonObject.getString( "caption" ), jsonObject.getInt( "id" ),
                                             jsonObject.getString( "profilePic" ),jsonObject.getString( "photo" ) ) );
                                 }
-                                adapter = new HomeAdapter( homee );
+                                adapter = new HomeAdapter( context ,arrayList );
                                 adapter.setHomeClickListener( (HomeAdapter.HomeClickListener) Home.this );
                             } catch (Exception e) {
                                 e.printStackTrace();
@@ -114,7 +149,9 @@ public class Home extends AppCompatActivity {
         {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                return super.getParams();
+                Map<String,String>params = new HashMap<String, String>();
+                params.put("token","c3a502127e75596d517c9fb573579025");
+                return params;
             }
         };
         RequestQueue requestQueue= Volley.newRequestQueue(this);

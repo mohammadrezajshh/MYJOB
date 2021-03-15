@@ -1,14 +1,9 @@
 package com.karkardanand.project;
 
-import android.widget.ImageView;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class NotifMoudel{
 
 
-    private String id;
+    private int id;
     private String title;
     private String money;
     private String skills;
@@ -25,11 +20,11 @@ public class NotifMoudel{
 
 
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -61,7 +56,7 @@ public class NotifMoudel{
 
 
 
-    public NotifMoudel(String id, String money, String title, String skills, int photo) {
+    public NotifMoudel(int id, String money, String title, String skills, int photo) {
         this.id = id;
         this.money = money;
         this.title = title;
